@@ -93,6 +93,8 @@ def t_error(t):
 #Build the lexer
 lexer = lex.lex()
 
+
+#Quick Test
 if __name__ == "__main__":
     test = "youare A = 20 + 30"
     lexer.input(test)
