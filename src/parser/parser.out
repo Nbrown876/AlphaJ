@@ -1,0 +1,1792 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    NOTES
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> statement_list
+Rule 2     statement_list -> statement
+Rule 3     statement_list -> statement_list statement
+Rule 4     statement -> declaration
+Rule 5     statement -> broadcast_stmt
+Rule 6     statement -> try_catch
+Rule 7     statement -> if_stmt
+Rule 8     statement -> cycle_stmt
+Rule 9     statement -> NEWLINE
+Rule 10    declaration -> YOUARE ID ASSIGNTO expression
+Rule 11    broadcast_stmt -> BROADCAST broadcast_args
+Rule 12    broadcast_args -> broadcast_arg
+Rule 13    broadcast_args -> broadcast_args broadcast_arg
+Rule 14    broadcast_arg -> STRING
+Rule 15    broadcast_arg -> expression
+Rule 16    try_catch -> TRY statement_list CATCH statement_list END
+Rule 17    if_stmt -> IF condition statement_list END
+Rule 18    if_stmt -> IF condition statement_list FALLBACK statement_list END
+Rule 19    cycle_stmt -> CYCLE condition statement_list END
+Rule 20    condition -> expression EQT expression
+Rule 21    condition -> expression NEQT expression
+Rule 22    condition -> expression LT expression
+Rule 23    condition -> expression GT expression
+Rule 24    condition -> expression LTE expression
+Rule 25    condition -> expression GTE expression
+Rule 26    expression -> expression PLUS term
+Rule 27    expression -> expression MINUS term
+Rule 28    expression -> term
+Rule 29    term -> term TIMES factor
+Rule 30    term -> term DIVIDE factor
+Rule 31    term -> factor
+Rule 32    factor -> base POWER factor
+Rule 33    factor -> base
+Rule 34    base -> NUMBER
+Rule 35    base -> ID
+Rule 36    base -> LT_PARENT expression RT_PARENT
+Rule 37    base -> MINUS base
+
+Terminals, with rules where they appear
+
+ASSIGNTO             : 10
+BROADCAST            : 11
+CATCH                : 16
+CYCLE                : 19
+DIVIDE               : 30
+END                  : 16 17 18 19
+EQT                  : 20
+FALLBACK             : 18
+GT                   : 23
+GTE                  : 25
+ID                   : 10 35
+IF                   : 17 18
+LT                   : 22
+LTE                  : 24
+LT_PARENT            : 36
+MINUS                : 27 37
+NEQT                 : 21
+NEWLINE              : 9
+NOTES                : 
+NUMBER               : 34
+PLUS                 : 26
+POWER                : 32
+RT_PARENT            : 36
+STRING               : 14
+TIMES                : 29
+TRY                  : 16
+YOUARE               : 10
+error                : 
+
+Nonterminals, with rules where they appear
+
+base                 : 32 33 37
+broadcast_arg        : 12 13
+broadcast_args       : 11 13
+broadcast_stmt       : 5
+condition            : 17 18 19
+cycle_stmt           : 8
+declaration          : 4
+expression           : 10 15 20 20 21 21 22 22 23 23 24 24 25 25 26 27 36
+factor               : 29 30 31 32
+if_stmt              : 7
+program              : 0
+statement            : 2 3
+statement_list       : 1 3 16 16 17 18 18 19
+term                 : 26 27 28 29 30
+try_catch            : 6
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . statement_list
+    (2) statement_list -> . statement
+    (3) statement_list -> . statement_list statement
+    (4) statement -> . declaration
+    (5) statement -> . broadcast_stmt
+    (6) statement -> . try_catch
+    (7) statement -> . if_stmt
+    (8) statement -> . cycle_stmt
+    (9) statement -> . NEWLINE
+    (10) declaration -> . YOUARE ID ASSIGNTO expression
+    (11) broadcast_stmt -> . BROADCAST broadcast_args
+    (16) try_catch -> . TRY statement_list CATCH statement_list END
+    (17) if_stmt -> . IF condition statement_list END
+    (18) if_stmt -> . IF condition statement_list FALLBACK statement_list END
+    (19) cycle_stmt -> . CYCLE condition statement_list END
+
+    NEWLINE         shift and go to state 9
+    YOUARE          shift and go to state 10
+    BROADCAST       shift and go to state 11
+    TRY             shift and go to state 12
+    IF              shift and go to state 13
+    CYCLE           shift and go to state 14
+
+    program                        shift and go to state 1
+    statement_list                 shift and go to state 2
+    statement                      shift and go to state 3
+    declaration                    shift and go to state 4
+    broadcast_stmt                 shift and go to state 5
+    try_catch                      shift and go to state 6
+    if_stmt                        shift and go to state 7
+    cycle_stmt                     shift and go to state 8
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> statement_list .
+    (3) statement_list -> statement_list . statement
+    (4) statement -> . declaration
+    (5) statement -> . broadcast_stmt
+    (6) statement -> . try_catch
+    (7) statement -> . if_stmt
+    (8) statement -> . cycle_stmt
+    (9) statement -> . NEWLINE
+    (10) declaration -> . YOUARE ID ASSIGNTO expression
+    (11) broadcast_stmt -> . BROADCAST broadcast_args
+    (16) try_catch -> . TRY statement_list CATCH statement_list END
+    (17) if_stmt -> . IF condition statement_list END
+    (18) if_stmt -> . IF condition statement_list FALLBACK statement_list END
+    (19) cycle_stmt -> . CYCLE condition statement_list END
+
+    $end            reduce using rule 1 (program -> statement_list .)
+    NEWLINE         shift and go to state 9
+    YOUARE          shift and go to state 10
+    BROADCAST       shift and go to state 11
+    TRY             shift and go to state 12
+    IF              shift and go to state 13
+    CYCLE           shift and go to state 14
+
+    statement                      shift and go to state 15
+    declaration                    shift and go to state 4
+    broadcast_stmt                 shift and go to state 5
+    try_catch                      shift and go to state 6
+    if_stmt                        shift and go to state 7
+    cycle_stmt                     shift and go to state 8
+
+state 3
+
+    (2) statement_list -> statement .
+
+    NEWLINE         reduce using rule 2 (statement_list -> statement .)
+    YOUARE          reduce using rule 2 (statement_list -> statement .)
+    BROADCAST       reduce using rule 2 (statement_list -> statement .)
+    TRY             reduce using rule 2 (statement_list -> statement .)
+    IF              reduce using rule 2 (statement_list -> statement .)
+    CYCLE           reduce using rule 2 (statement_list -> statement .)
+    $end            reduce using rule 2 (statement_list -> statement .)
+    CATCH           reduce using rule 2 (statement_list -> statement .)
+    END             reduce using rule 2 (statement_list -> statement .)
+    FALLBACK        reduce using rule 2 (statement_list -> statement .)
+
+
+state 4
+
+    (4) statement -> declaration .
+
+    NEWLINE         reduce using rule 4 (statement -> declaration .)
+    YOUARE          reduce using rule 4 (statement -> declaration .)
+    BROADCAST       reduce using rule 4 (statement -> declaration .)
+    TRY             reduce using rule 4 (statement -> declaration .)
+    IF              reduce using rule 4 (statement -> declaration .)
+    CYCLE           reduce using rule 4 (statement -> declaration .)
+    $end            reduce using rule 4 (statement -> declaration .)
+    CATCH           reduce using rule 4 (statement -> declaration .)
+    END             reduce using rule 4 (statement -> declaration .)
+    FALLBACK        reduce using rule 4 (statement -> declaration .)
+
+
+state 5
+
+    (5) statement -> broadcast_stmt .
+
+    NEWLINE         reduce using rule 5 (statement -> broadcast_stmt .)
+    YOUARE          reduce using rule 5 (statement -> broadcast_stmt .)
+    BROADCAST       reduce using rule 5 (statement -> broadcast_stmt .)
+    TRY             reduce using rule 5 (statement -> broadcast_stmt .)
+    IF              reduce using rule 5 (statement -> broadcast_stmt .)
+    CYCLE           reduce using rule 5 (statement -> broadcast_stmt .)
+    $end            reduce using rule 5 (statement -> broadcast_stmt .)
+    CATCH           reduce using rule 5 (statement -> broadcast_stmt .)
+    END             reduce using rule 5 (statement -> broadcast_stmt .)
+    FALLBACK        reduce using rule 5 (statement -> broadcast_stmt .)
+
+
+state 6
+
+    (6) statement -> try_catch .
+
+    NEWLINE         reduce using rule 6 (statement -> try_catch .)
+    YOUARE          reduce using rule 6 (statement -> try_catch .)
+    BROADCAST       reduce using rule 6 (statement -> try_catch .)
+    TRY             reduce using rule 6 (statement -> try_catch .)
+    IF              reduce using rule 6 (statement -> try_catch .)
+    CYCLE           reduce using rule 6 (statement -> try_catch .)
+    $end            reduce using rule 6 (statement -> try_catch .)
+    CATCH           reduce using rule 6 (statement -> try_catch .)
+    END             reduce using rule 6 (statement -> try_catch .)
+    FALLBACK        reduce using rule 6 (statement -> try_catch .)
+
+
+state 7
+
+    (7) statement -> if_stmt .
+
+    NEWLINE         reduce using rule 7 (statement -> if_stmt .)
+    YOUARE          reduce using rule 7 (statement -> if_stmt .)
+    BROADCAST       reduce using rule 7 (statement -> if_stmt .)
+    TRY             reduce using rule 7 (statement -> if_stmt .)
+    IF              reduce using rule 7 (statement -> if_stmt .)
+    CYCLE           reduce using rule 7 (statement -> if_stmt .)
+    $end            reduce using rule 7 (statement -> if_stmt .)
+    CATCH           reduce using rule 7 (statement -> if_stmt .)
+    END             reduce using rule 7 (statement -> if_stmt .)
+    FALLBACK        reduce using rule 7 (statement -> if_stmt .)
+
+
+state 8
+
+    (8) statement -> cycle_stmt .
+
+    NEWLINE         reduce using rule 8 (statement -> cycle_stmt .)
+    YOUARE          reduce using rule 8 (statement -> cycle_stmt .)
+    BROADCAST       reduce using rule 8 (statement -> cycle_stmt .)
+    TRY             reduce using rule 8 (statement -> cycle_stmt .)
+    IF              reduce using rule 8 (statement -> cycle_stmt .)
+    CYCLE           reduce using rule 8 (statement -> cycle_stmt .)
+    $end            reduce using rule 8 (statement -> cycle_stmt .)
+    CATCH           reduce using rule 8 (statement -> cycle_stmt .)
+    END             reduce using rule 8 (statement -> cycle_stmt .)
+    FALLBACK        reduce using rule 8 (statement -> cycle_stmt .)
+
+
+state 9
+
+    (9) statement -> NEWLINE .
+
+    NEWLINE         reduce using rule 9 (statement -> NEWLINE .)
+    YOUARE          reduce using rule 9 (statement -> NEWLINE .)
+    BROADCAST       reduce using rule 9 (statement -> NEWLINE .)
+    TRY             reduce using rule 9 (statement -> NEWLINE .)
+    IF              reduce using rule 9 (statement -> NEWLINE .)
+    CYCLE           reduce using rule 9 (statement -> NEWLINE .)
+    $end            reduce using rule 9 (statement -> NEWLINE .)
+    CATCH           reduce using rule 9 (statement -> NEWLINE .)
+    END             reduce using rule 9 (statement -> NEWLINE .)
+    FALLBACK        reduce using rule 9 (statement -> NEWLINE .)
+
+
+state 10
+
+    (10) declaration -> YOUARE . ID ASSIGNTO expression
+
+    ID              shift and go to state 16
+
+
+state 11
+
+    (11) broadcast_stmt -> BROADCAST . broadcast_args
+    (12) broadcast_args -> . broadcast_arg
+    (13) broadcast_args -> . broadcast_args broadcast_arg
+    (14) broadcast_arg -> . STRING
+    (15) broadcast_arg -> . expression
+    (26) expression -> . expression PLUS term
+    (27) expression -> . expression MINUS term
+    (28) expression -> . term
+    (29) term -> . term TIMES factor
+    (30) term -> . term DIVIDE factor
+    (31) term -> . factor
+    (32) factor -> . base POWER factor
+    (33) factor -> . base
+    (34) base -> . NUMBER
+    (35) base -> . ID
+    (36) base -> . LT_PARENT expression RT_PARENT
+    (37) base -> . MINUS base
+
+    STRING          shift and go to state 19
+    NUMBER          shift and go to state 25
+    ID              shift and go to state 26
+    LT_PARENT       shift and go to state 27
+    MINUS           shift and go to state 22
+
+    broadcast_args                 shift and go to state 17
+    broadcast_arg                  shift and go to state 18
+    expression                     shift and go to state 20
+    term                           shift and go to state 21
+    factor                         shift and go to state 23
+    base                           shift and go to state 24
+
+state 12
+
+    (16) try_catch -> TRY . statement_list CATCH statement_list END
+    (2) statement_list -> . statement
+    (3) statement_list -> . statement_list statement
+    (4) statement -> . declaration
+    (5) statement -> . broadcast_stmt
+    (6) statement -> . try_catch
+    (7) statement -> . if_stmt
+    (8) statement -> . cycle_stmt
+    (9) statement -> . NEWLINE
+    (10) declaration -> . YOUARE ID ASSIGNTO expression
+    (11) broadcast_stmt -> . BROADCAST broadcast_args
+    (16) try_catch -> . TRY statement_list CATCH statement_list END
+    (17) if_stmt -> . IF condition statement_list END
+    (18) if_stmt -> . IF condition statement_list FALLBACK statement_list END
+    (19) cycle_stmt -> . CYCLE condition statement_list END
+
+    NEWLINE         shift and go to state 9
+    YOUARE          shift and go to state 10
+    BROADCAST       shift and go to state 11
+    TRY             shift and go to state 12
+    IF              shift and go to state 13
+    CYCLE           shift and go to state 14
+
+    statement_list                 shift and go to state 28
+    statement                      shift and go to state 3
+    declaration                    shift and go to state 4
+    broadcast_stmt                 shift and go to state 5
+    try_catch                      shift and go to state 6
+    if_stmt                        shift and go to state 7
+    cycle_stmt                     shift and go to state 8
+
+state 13
+
+    (17) if_stmt -> IF . condition statement_list END
+    (18) if_stmt -> IF . condition statement_list FALLBACK statement_list END
+    (20) condition -> . expression EQT expression
+    (21) condition -> . expression NEQT expression
+    (22) condition -> . expression LT expression
+    (23) condition -> . expression GT expression
+    (24) condition -> . expression LTE expression
+    (25) condition -> . expression GTE expression
+    (26) expression -> . expression PLUS term
+    (27) expression -> . expression MINUS term
+    (28) expression -> . term
+    (29) term -> . term TIMES factor
+    (30) term -> . term DIVIDE factor
+    (31) term -> . factor
+    (32) factor -> . base POWER factor
+    (33) factor -> . base
+    (34) base -> . NUMBER
+    (35) base -> . ID
+    (36) base -> . LT_PARENT expression RT_PARENT
+    (37) base -> . MINUS base
+
+    NUMBER          shift and go to state 25
+    ID              shift and go to state 26
+    LT_PARENT       shift and go to state 27
+    MINUS           shift and go to state 22
+
+    condition                      shift and go to state 29
+    expression                     shift and go to state 30
+    term                           shift and go to state 21
+    factor                         shift and go to state 23
+    base                           shift and go to state 24
+
+state 14
+
+    (19) cycle_stmt -> CYCLE . condition statement_list END
+    (20) condition -> . expression EQT expression
+    (21) condition -> . expression NEQT expression
+    (22) condition -> . expression LT expression
+    (23) condition -> . expression GT expression
+    (24) condition -> . expression LTE expression
+    (25) condition -> . expression GTE expression
+    (26) expression -> . expression PLUS term
+    (27) expression -> . expression MINUS term
+    (28) expression -> . term
+    (29) term -> . term TIMES factor
+    (30) term -> . term DIVIDE factor
+    (31) term -> . factor
+    (32) factor -> . base POWER factor
+    (33) factor -> . base
+    (34) base -> . NUMBER
+    (35) base -> . ID
+    (36) base -> . LT_PARENT expression RT_PARENT
+    (37) base -> . MINUS base
+
+    NUMBER          shift and go to state 25
+    ID              shift and go to state 26
+    LT_PARENT       shift and go to state 27
+    MINUS           shift and go to state 22
+
+    condition                      shift and go to state 31
+    expression                     shift and go to state 30
+    term                           shift and go to state 21
+    factor                         shift and go to state 23
+    base                           shift and go to state 24
+
+state 15
+
+    (3) statement_list -> statement_list statement .
+
+    NEWLINE         reduce using rule 3 (statement_list -> statement_list statement .)
+    YOUARE          reduce using rule 3 (statement_list -> statement_list statement .)
+    BROADCAST       reduce using rule 3 (statement_list -> statement_list statement .)
+    TRY             reduce using rule 3 (statement_list -> statement_list statement .)
+    IF              reduce using rule 3 (statement_list -> statement_list statement .)
+    CYCLE           reduce using rule 3 (statement_list -> statement_list statement .)
+    $end            reduce using rule 3 (statement_list -> statement_list statement .)
+    CATCH           reduce using rule 3 (statement_list -> statement_list statement .)
+    END             reduce using rule 3 (statement_list -> statement_list statement .)
+    FALLBACK        reduce using rule 3 (statement_list -> statement_list statement .)
+
+
+state 16
+
+    (10) declaration -> YOUARE ID . ASSIGNTO expression
+
+    ASSIGNTO        shift and go to state 32
+
+
+state 17
+
+    (11) broadcast_stmt -> BROADCAST broadcast_args .
+    (13) broadcast_args -> broadcast_args . broadcast_arg
+    (14) broadcast_arg -> . STRING
+    (15) broadcast_arg -> . expression
+    (26) expression -> . expression PLUS term
+    (27) expression -> . expression MINUS term
+    (28) expression -> . term
+    (29) term -> . term TIMES factor
+    (30) term -> . term DIVIDE factor
+    (31) term -> . factor
+    (32) factor -> . base POWER factor
+    (33) factor -> . base
+    (34) base -> . NUMBER
+    (35) base -> . ID
+    (36) base -> . LT_PARENT expression RT_PARENT
+    (37) base -> . MINUS base
+
+    NEWLINE         reduce using rule 11 (broadcast_stmt -> BROADCAST broadcast_args .)
+    YOUARE          reduce using rule 11 (broadcast_stmt -> BROADCAST broadcast_args .)
+    BROADCAST       reduce using rule 11 (broadcast_stmt -> BROADCAST broadcast_args .)
+    TRY             reduce using rule 11 (broadcast_stmt -> BROADCAST broadcast_args .)
+    IF              reduce using rule 11 (broadcast_stmt -> BROADCAST broadcast_args .)
+    CYCLE           reduce using rule 11 (broadcast_stmt -> BROADCAST broadcast_args .)
+    $end            reduce using rule 11 (broadcast_stmt -> BROADCAST broadcast_args .)
+    CATCH           reduce using rule 11 (broadcast_stmt -> BROADCAST broadcast_args .)
+    END             reduce using rule 11 (broadcast_stmt -> BROADCAST broadcast_args .)
+    FALLBACK        reduce using rule 11 (broadcast_stmt -> BROADCAST broadcast_args .)
+    STRING          shift and go to state 19
+    NUMBER          shift and go to state 25
+    ID              shift and go to state 26
+    LT_PARENT       shift and go to state 27
+    MINUS           shift and go to state 22
+
+    broadcast_arg                  shift and go to state 33
+    expression                     shift and go to state 20
+    term                           shift and go to state 21
+    factor                         shift and go to state 23
+    base                           shift and go to state 24
+
+state 18
+
+    (12) broadcast_args -> broadcast_arg .
+
+    STRING          reduce using rule 12 (broadcast_args -> broadcast_arg .)
+    NUMBER          reduce using rule 12 (broadcast_args -> broadcast_arg .)
+    ID              reduce using rule 12 (broadcast_args -> broadcast_arg .)
+    LT_PARENT       reduce using rule 12 (broadcast_args -> broadcast_arg .)
+    MINUS           reduce using rule 12 (broadcast_args -> broadcast_arg .)
+    NEWLINE         reduce using rule 12 (broadcast_args -> broadcast_arg .)
+    YOUARE          reduce using rule 12 (broadcast_args -> broadcast_arg .)
+    BROADCAST       reduce using rule 12 (broadcast_args -> broadcast_arg .)
+    TRY             reduce using rule 12 (broadcast_args -> broadcast_arg .)
+    IF              reduce using rule 12 (broadcast_args -> broadcast_arg .)
+    CYCLE           reduce using rule 12 (broadcast_args -> broadcast_arg .)
+    $end            reduce using rule 12 (broadcast_args -> broadcast_arg .)
+    CATCH           reduce using rule 12 (broadcast_args -> broadcast_arg .)
+    END             reduce using rule 12 (broadcast_args -> broadcast_arg .)
+    FALLBACK        reduce using rule 12 (broadcast_args -> broadcast_arg .)
+
+
+state 19
+
+    (14) broadcast_arg -> STRING .
+
+    STRING          reduce using rule 14 (broadcast_arg -> STRING .)
+    NUMBER          reduce using rule 14 (broadcast_arg -> STRING .)
+    ID              reduce using rule 14 (broadcast_arg -> STRING .)
+    LT_PARENT       reduce using rule 14 (broadcast_arg -> STRING .)
+    MINUS           reduce using rule 14 (broadcast_arg -> STRING .)
+    NEWLINE         reduce using rule 14 (broadcast_arg -> STRING .)
+    YOUARE          reduce using rule 14 (broadcast_arg -> STRING .)
+    BROADCAST       reduce using rule 14 (broadcast_arg -> STRING .)
+    TRY             reduce using rule 14 (broadcast_arg -> STRING .)
+    IF              reduce using rule 14 (broadcast_arg -> STRING .)
+    CYCLE           reduce using rule 14 (broadcast_arg -> STRING .)
+    $end            reduce using rule 14 (broadcast_arg -> STRING .)
+    CATCH           reduce using rule 14 (broadcast_arg -> STRING .)
+    END             reduce using rule 14 (broadcast_arg -> STRING .)
+    FALLBACK        reduce using rule 14 (broadcast_arg -> STRING .)
+
+
+state 20
+
+    (15) broadcast_arg -> expression .
+    (26) expression -> expression . PLUS term
+    (27) expression -> expression . MINUS term
+
+  ! shift/reduce conflict for MINUS resolved as shift
+    STRING          reduce using rule 15 (broadcast_arg -> expression .)
+    NUMBER          reduce using rule 15 (broadcast_arg -> expression .)
+    ID              reduce using rule 15 (broadcast_arg -> expression .)
+    LT_PARENT       reduce using rule 15 (broadcast_arg -> expression .)
+    NEWLINE         reduce using rule 15 (broadcast_arg -> expression .)
+    YOUARE          reduce using rule 15 (broadcast_arg -> expression .)
+    BROADCAST       reduce using rule 15 (broadcast_arg -> expression .)
+    TRY             reduce using rule 15 (broadcast_arg -> expression .)
+    IF              reduce using rule 15 (broadcast_arg -> expression .)
+    CYCLE           reduce using rule 15 (broadcast_arg -> expression .)
+    $end            reduce using rule 15 (broadcast_arg -> expression .)
+    CATCH           reduce using rule 15 (broadcast_arg -> expression .)
+    END             reduce using rule 15 (broadcast_arg -> expression .)
+    FALLBACK        reduce using rule 15 (broadcast_arg -> expression .)
+    PLUS            shift and go to state 34
+    MINUS           shift and go to state 35
+
+  ! MINUS           [ reduce using rule 15 (broadcast_arg -> expression .) ]
+
+
+state 21
+
+    (28) expression -> term .
+    (29) term -> term . TIMES factor
+    (30) term -> term . DIVIDE factor
+
+    PLUS            reduce using rule 28 (expression -> term .)
+    MINUS           reduce using rule 28 (expression -> term .)
+    STRING          reduce using rule 28 (expression -> term .)
+    NUMBER          reduce using rule 28 (expression -> term .)
+    ID              reduce using rule 28 (expression -> term .)
+    LT_PARENT       reduce using rule 28 (expression -> term .)
+    NEWLINE         reduce using rule 28 (expression -> term .)
+    YOUARE          reduce using rule 28 (expression -> term .)
+    BROADCAST       reduce using rule 28 (expression -> term .)
+    TRY             reduce using rule 28 (expression -> term .)
+    IF              reduce using rule 28 (expression -> term .)
+    CYCLE           reduce using rule 28 (expression -> term .)
+    $end            reduce using rule 28 (expression -> term .)
+    CATCH           reduce using rule 28 (expression -> term .)
+    END             reduce using rule 28 (expression -> term .)
+    FALLBACK        reduce using rule 28 (expression -> term .)
+    EQT             reduce using rule 28 (expression -> term .)
+    NEQT            reduce using rule 28 (expression -> term .)
+    LT              reduce using rule 28 (expression -> term .)
+    GT              reduce using rule 28 (expression -> term .)
+    LTE             reduce using rule 28 (expression -> term .)
+    GTE             reduce using rule 28 (expression -> term .)
+    RT_PARENT       reduce using rule 28 (expression -> term .)
+    TIMES           shift and go to state 36
+    DIVIDE          shift and go to state 37
+
+
+state 22
+
+    (37) base -> MINUS . base
+    (34) base -> . NUMBER
+    (35) base -> . ID
+    (36) base -> . LT_PARENT expression RT_PARENT
+    (37) base -> . MINUS base
+
+    NUMBER          shift and go to state 25
+    ID              shift and go to state 26
+    LT_PARENT       shift and go to state 27
+    MINUS           shift and go to state 22
+
+    base                           shift and go to state 38
+
+state 23
+
+    (31) term -> factor .
+
+    TIMES           reduce using rule 31 (term -> factor .)
+    DIVIDE          reduce using rule 31 (term -> factor .)
+    PLUS            reduce using rule 31 (term -> factor .)
+    MINUS           reduce using rule 31 (term -> factor .)
+    STRING          reduce using rule 31 (term -> factor .)
+    NUMBER          reduce using rule 31 (term -> factor .)
+    ID              reduce using rule 31 (term -> factor .)
+    LT_PARENT       reduce using rule 31 (term -> factor .)
+    NEWLINE         reduce using rule 31 (term -> factor .)
+    YOUARE          reduce using rule 31 (term -> factor .)
+    BROADCAST       reduce using rule 31 (term -> factor .)
+    TRY             reduce using rule 31 (term -> factor .)
+    IF              reduce using rule 31 (term -> factor .)
+    CYCLE           reduce using rule 31 (term -> factor .)
+    $end            reduce using rule 31 (term -> factor .)
+    CATCH           reduce using rule 31 (term -> factor .)
+    END             reduce using rule 31 (term -> factor .)
+    FALLBACK        reduce using rule 31 (term -> factor .)
+    EQT             reduce using rule 31 (term -> factor .)
+    NEQT            reduce using rule 31 (term -> factor .)
+    LT              reduce using rule 31 (term -> factor .)
+    GT              reduce using rule 31 (term -> factor .)
+    LTE             reduce using rule 31 (term -> factor .)
+    GTE             reduce using rule 31 (term -> factor .)
+    RT_PARENT       reduce using rule 31 (term -> factor .)
+
+
+state 24
+
+    (32) factor -> base . POWER factor
+    (33) factor -> base .
+
+    POWER           shift and go to state 39
+    TIMES           reduce using rule 33 (factor -> base .)
+    DIVIDE          reduce using rule 33 (factor -> base .)
+    PLUS            reduce using rule 33 (factor -> base .)
+    MINUS           reduce using rule 33 (factor -> base .)
+    STRING          reduce using rule 33 (factor -> base .)
+    NUMBER          reduce using rule 33 (factor -> base .)
+    ID              reduce using rule 33 (factor -> base .)
+    LT_PARENT       reduce using rule 33 (factor -> base .)
+    NEWLINE         reduce using rule 33 (factor -> base .)
+    YOUARE          reduce using rule 33 (factor -> base .)
+    BROADCAST       reduce using rule 33 (factor -> base .)
+    TRY             reduce using rule 33 (factor -> base .)
+    IF              reduce using rule 33 (factor -> base .)
+    CYCLE           reduce using rule 33 (factor -> base .)
+    $end            reduce using rule 33 (factor -> base .)
+    CATCH           reduce using rule 33 (factor -> base .)
+    END             reduce using rule 33 (factor -> base .)
+    FALLBACK        reduce using rule 33 (factor -> base .)
+    EQT             reduce using rule 33 (factor -> base .)
+    NEQT            reduce using rule 33 (factor -> base .)
+    LT              reduce using rule 33 (factor -> base .)
+    GT              reduce using rule 33 (factor -> base .)
+    LTE             reduce using rule 33 (factor -> base .)
+    GTE             reduce using rule 33 (factor -> base .)
+    RT_PARENT       reduce using rule 33 (factor -> base .)
+
+
+state 25
+
+    (34) base -> NUMBER .
+
+    POWER           reduce using rule 34 (base -> NUMBER .)
+    TIMES           reduce using rule 34 (base -> NUMBER .)
+    DIVIDE          reduce using rule 34 (base -> NUMBER .)
+    PLUS            reduce using rule 34 (base -> NUMBER .)
+    MINUS           reduce using rule 34 (base -> NUMBER .)
+    STRING          reduce using rule 34 (base -> NUMBER .)
+    NUMBER          reduce using rule 34 (base -> NUMBER .)
+    ID              reduce using rule 34 (base -> NUMBER .)
+    LT_PARENT       reduce using rule 34 (base -> NUMBER .)
+    NEWLINE         reduce using rule 34 (base -> NUMBER .)
+    YOUARE          reduce using rule 34 (base -> NUMBER .)
+    BROADCAST       reduce using rule 34 (base -> NUMBER .)
+    TRY             reduce using rule 34 (base -> NUMBER .)
+    IF              reduce using rule 34 (base -> NUMBER .)
+    CYCLE           reduce using rule 34 (base -> NUMBER .)
+    $end            reduce using rule 34 (base -> NUMBER .)
+    CATCH           reduce using rule 34 (base -> NUMBER .)
+    END             reduce using rule 34 (base -> NUMBER .)
+    FALLBACK        reduce using rule 34 (base -> NUMBER .)
+    EQT             reduce using rule 34 (base -> NUMBER .)
+    NEQT            reduce using rule 34 (base -> NUMBER .)
+    LT              reduce using rule 34 (base -> NUMBER .)
+    GT              reduce using rule 34 (base -> NUMBER .)
+    LTE             reduce using rule 34 (base -> NUMBER .)
+    GTE             reduce using rule 34 (base -> NUMBER .)
+    RT_PARENT       reduce using rule 34 (base -> NUMBER .)
+
+
+state 26
+
+    (35) base -> ID .
+
+    POWER           reduce using rule 35 (base -> ID .)
+    TIMES           reduce using rule 35 (base -> ID .)
+    DIVIDE          reduce using rule 35 (base -> ID .)
+    PLUS            reduce using rule 35 (base -> ID .)
+    MINUS           reduce using rule 35 (base -> ID .)
+    STRING          reduce using rule 35 (base -> ID .)
+    NUMBER          reduce using rule 35 (base -> ID .)
+    ID              reduce using rule 35 (base -> ID .)
+    LT_PARENT       reduce using rule 35 (base -> ID .)
+    NEWLINE         reduce using rule 35 (base -> ID .)
+    YOUARE          reduce using rule 35 (base -> ID .)
+    BROADCAST       reduce using rule 35 (base -> ID .)
+    TRY             reduce using rule 35 (base -> ID .)
+    IF              reduce using rule 35 (base -> ID .)
+    CYCLE           reduce using rule 35 (base -> ID .)
+    $end            reduce using rule 35 (base -> ID .)
+    CATCH           reduce using rule 35 (base -> ID .)
+    END             reduce using rule 35 (base -> ID .)
+    FALLBACK        reduce using rule 35 (base -> ID .)
+    EQT             reduce using rule 35 (base -> ID .)
+    NEQT            reduce using rule 35 (base -> ID .)
+    LT              reduce using rule 35 (base -> ID .)
+    GT              reduce using rule 35 (base -> ID .)
+    LTE             reduce using rule 35 (base -> ID .)
+    GTE             reduce using rule 35 (base -> ID .)
+    RT_PARENT       reduce using rule 35 (base -> ID .)
+
+
+state 27
+
+    (36) base -> LT_PARENT . expression RT_PARENT
+    (26) expression -> . expression PLUS term
+    (27) expression -> . expression MINUS term
+    (28) expression -> . term
+    (29) term -> . term TIMES factor
+    (30) term -> . term DIVIDE factor
+    (31) term -> . factor
+    (32) factor -> . base POWER factor
+    (33) factor -> . base
+    (34) base -> . NUMBER
+    (35) base -> . ID
+    (36) base -> . LT_PARENT expression RT_PARENT
+    (37) base -> . MINUS base
+
+    NUMBER          shift and go to state 25
+    ID              shift and go to state 26
+    LT_PARENT       shift and go to state 27
+    MINUS           shift and go to state 22
+
+    expression                     shift and go to state 40
+    term                           shift and go to state 21
+    factor                         shift and go to state 23
+    base                           shift and go to state 24
+
+state 28
+
+    (16) try_catch -> TRY statement_list . CATCH statement_list END
+    (3) statement_list -> statement_list . statement
+    (4) statement -> . declaration
+    (5) statement -> . broadcast_stmt
+    (6) statement -> . try_catch
+    (7) statement -> . if_stmt
+    (8) statement -> . cycle_stmt
+    (9) statement -> . NEWLINE
+    (10) declaration -> . YOUARE ID ASSIGNTO expression
+    (11) broadcast_stmt -> . BROADCAST broadcast_args
+    (16) try_catch -> . TRY statement_list CATCH statement_list END
+    (17) if_stmt -> . IF condition statement_list END
+    (18) if_stmt -> . IF condition statement_list FALLBACK statement_list END
+    (19) cycle_stmt -> . CYCLE condition statement_list END
+
+    CATCH           shift and go to state 41
+    NEWLINE         shift and go to state 9
+    YOUARE          shift and go to state 10
+    BROADCAST       shift and go to state 11
+    TRY             shift and go to state 12
+    IF              shift and go to state 13
+    CYCLE           shift and go to state 14
+
+    statement                      shift and go to state 15
+    declaration                    shift and go to state 4
+    broadcast_stmt                 shift and go to state 5
+    try_catch                      shift and go to state 6
+    if_stmt                        shift and go to state 7
+    cycle_stmt                     shift and go to state 8
+
+state 29
+
+    (17) if_stmt -> IF condition . statement_list END
+    (18) if_stmt -> IF condition . statement_list FALLBACK statement_list END
+    (2) statement_list -> . statement
+    (3) statement_list -> . statement_list statement
+    (4) statement -> . declaration
+    (5) statement -> . broadcast_stmt
+    (6) statement -> . try_catch
+    (7) statement -> . if_stmt
+    (8) statement -> . cycle_stmt
+    (9) statement -> . NEWLINE
+    (10) declaration -> . YOUARE ID ASSIGNTO expression
+    (11) broadcast_stmt -> . BROADCAST broadcast_args
+    (16) try_catch -> . TRY statement_list CATCH statement_list END
+    (17) if_stmt -> . IF condition statement_list END
+    (18) if_stmt -> . IF condition statement_list FALLBACK statement_list END
+    (19) cycle_stmt -> . CYCLE condition statement_list END
+
+    NEWLINE         shift and go to state 9
+    YOUARE          shift and go to state 10
+    BROADCAST       shift and go to state 11
+    TRY             shift and go to state 12
+    IF              shift and go to state 13
+    CYCLE           shift and go to state 14
+
+    statement_list                 shift and go to state 42
+    statement                      shift and go to state 3
+    declaration                    shift and go to state 4
+    broadcast_stmt                 shift and go to state 5
+    try_catch                      shift and go to state 6
+    if_stmt                        shift and go to state 7
+    cycle_stmt                     shift and go to state 8
+
+state 30
+
+    (20) condition -> expression . EQT expression
+    (21) condition -> expression . NEQT expression
+    (22) condition -> expression . LT expression
+    (23) condition -> expression . GT expression
+    (24) condition -> expression . LTE expression
+    (25) condition -> expression . GTE expression
+    (26) expression -> expression . PLUS term
+    (27) expression -> expression . MINUS term
+
+    EQT             shift and go to state 43
+    NEQT            shift and go to state 44
+    LT              shift and go to state 45
+    GT              shift and go to state 46
+    LTE             shift and go to state 47
+    GTE             shift and go to state 48
+    PLUS            shift and go to state 34
+    MINUS           shift and go to state 35
+
+
+state 31
+
+    (19) cycle_stmt -> CYCLE condition . statement_list END
+    (2) statement_list -> . statement
+    (3) statement_list -> . statement_list statement
+    (4) statement -> . declaration
+    (5) statement -> . broadcast_stmt
+    (6) statement -> . try_catch
+    (7) statement -> . if_stmt
+    (8) statement -> . cycle_stmt
+    (9) statement -> . NEWLINE
+    (10) declaration -> . YOUARE ID ASSIGNTO expression
+    (11) broadcast_stmt -> . BROADCAST broadcast_args
+    (16) try_catch -> . TRY statement_list CATCH statement_list END
+    (17) if_stmt -> . IF condition statement_list END
+    (18) if_stmt -> . IF condition statement_list FALLBACK statement_list END
+    (19) cycle_stmt -> . CYCLE condition statement_list END
+
+    NEWLINE         shift and go to state 9
+    YOUARE          shift and go to state 10
+    BROADCAST       shift and go to state 11
+    TRY             shift and go to state 12
+    IF              shift and go to state 13
+    CYCLE           shift and go to state 14
+
+    statement_list                 shift and go to state 49
+    statement                      shift and go to state 3
+    declaration                    shift and go to state 4
+    broadcast_stmt                 shift and go to state 5
+    try_catch                      shift and go to state 6
+    if_stmt                        shift and go to state 7
+    cycle_stmt                     shift and go to state 8
+
+state 32
+
+    (10) declaration -> YOUARE ID ASSIGNTO . expression
+    (26) expression -> . expression PLUS term
+    (27) expression -> . expression MINUS term
+    (28) expression -> . term
+    (29) term -> . term TIMES factor
+    (30) term -> . term DIVIDE factor
+    (31) term -> . factor
+    (32) factor -> . base POWER factor
+    (33) factor -> . base
+    (34) base -> . NUMBER
+    (35) base -> . ID
+    (36) base -> . LT_PARENT expression RT_PARENT
+    (37) base -> . MINUS base
+
+    NUMBER          shift and go to state 25
+    ID              shift and go to state 26
+    LT_PARENT       shift and go to state 27
+    MINUS           shift and go to state 22
+
+    expression                     shift and go to state 50
+    term                           shift and go to state 21
+    factor                         shift and go to state 23
+    base                           shift and go to state 24
+
+state 33
+
+    (13) broadcast_args -> broadcast_args broadcast_arg .
+
+    STRING          reduce using rule 13 (broadcast_args -> broadcast_args broadcast_arg .)
+    NUMBER          reduce using rule 13 (broadcast_args -> broadcast_args broadcast_arg .)
+    ID              reduce using rule 13 (broadcast_args -> broadcast_args broadcast_arg .)
+    LT_PARENT       reduce using rule 13 (broadcast_args -> broadcast_args broadcast_arg .)
+    MINUS           reduce using rule 13 (broadcast_args -> broadcast_args broadcast_arg .)
+    NEWLINE         reduce using rule 13 (broadcast_args -> broadcast_args broadcast_arg .)
+    YOUARE          reduce using rule 13 (broadcast_args -> broadcast_args broadcast_arg .)
+    BROADCAST       reduce using rule 13 (broadcast_args -> broadcast_args broadcast_arg .)
+    TRY             reduce using rule 13 (broadcast_args -> broadcast_args broadcast_arg .)
+    IF              reduce using rule 13 (broadcast_args -> broadcast_args broadcast_arg .)
+    CYCLE           reduce using rule 13 (broadcast_args -> broadcast_args broadcast_arg .)
+    $end            reduce using rule 13 (broadcast_args -> broadcast_args broadcast_arg .)
+    CATCH           reduce using rule 13 (broadcast_args -> broadcast_args broadcast_arg .)
+    END             reduce using rule 13 (broadcast_args -> broadcast_args broadcast_arg .)
+    FALLBACK        reduce using rule 13 (broadcast_args -> broadcast_args broadcast_arg .)
+
+
+state 34
+
+    (26) expression -> expression PLUS . term
+    (29) term -> . term TIMES factor
+    (30) term -> . term DIVIDE factor
+    (31) term -> . factor
+    (32) factor -> . base POWER factor
+    (33) factor -> . base
+    (34) base -> . NUMBER
+    (35) base -> . ID
+    (36) base -> . LT_PARENT expression RT_PARENT
+    (37) base -> . MINUS base
+
+    NUMBER          shift and go to state 25
+    ID              shift and go to state 26
+    LT_PARENT       shift and go to state 27
+    MINUS           shift and go to state 22
+
+    term                           shift and go to state 51
+    factor                         shift and go to state 23
+    base                           shift and go to state 24
+
+state 35
+
+    (27) expression -> expression MINUS . term
+    (29) term -> . term TIMES factor
+    (30) term -> . term DIVIDE factor
+    (31) term -> . factor
+    (32) factor -> . base POWER factor
+    (33) factor -> . base
+    (34) base -> . NUMBER
+    (35) base -> . ID
+    (36) base -> . LT_PARENT expression RT_PARENT
+    (37) base -> . MINUS base
+
+    NUMBER          shift and go to state 25
+    ID              shift and go to state 26
+    LT_PARENT       shift and go to state 27
+    MINUS           shift and go to state 22
+
+    term                           shift and go to state 52
+    factor                         shift and go to state 23
+    base                           shift and go to state 24
+
+state 36
+
+    (29) term -> term TIMES . factor
+    (32) factor -> . base POWER factor
+    (33) factor -> . base
+    (34) base -> . NUMBER
+    (35) base -> . ID
+    (36) base -> . LT_PARENT expression RT_PARENT
+    (37) base -> . MINUS base
+
+    NUMBER          shift and go to state 25
+    ID              shift and go to state 26
+    LT_PARENT       shift and go to state 27
+    MINUS           shift and go to state 22
+
+    factor                         shift and go to state 53
+    base                           shift and go to state 24
+
+state 37
+
+    (30) term -> term DIVIDE . factor
+    (32) factor -> . base POWER factor
+    (33) factor -> . base
+    (34) base -> . NUMBER
+    (35) base -> . ID
+    (36) base -> . LT_PARENT expression RT_PARENT
+    (37) base -> . MINUS base
+
+    NUMBER          shift and go to state 25
+    ID              shift and go to state 26
+    LT_PARENT       shift and go to state 27
+    MINUS           shift and go to state 22
+
+    factor                         shift and go to state 54
+    base                           shift and go to state 24
+
+state 38
+
+    (37) base -> MINUS base .
+
+    POWER           reduce using rule 37 (base -> MINUS base .)
+    TIMES           reduce using rule 37 (base -> MINUS base .)
+    DIVIDE          reduce using rule 37 (base -> MINUS base .)
+    PLUS            reduce using rule 37 (base -> MINUS base .)
+    MINUS           reduce using rule 37 (base -> MINUS base .)
+    STRING          reduce using rule 37 (base -> MINUS base .)
+    NUMBER          reduce using rule 37 (base -> MINUS base .)
+    ID              reduce using rule 37 (base -> MINUS base .)
+    LT_PARENT       reduce using rule 37 (base -> MINUS base .)
+    NEWLINE         reduce using rule 37 (base -> MINUS base .)
+    YOUARE          reduce using rule 37 (base -> MINUS base .)
+    BROADCAST       reduce using rule 37 (base -> MINUS base .)
+    TRY             reduce using rule 37 (base -> MINUS base .)
+    IF              reduce using rule 37 (base -> MINUS base .)
+    CYCLE           reduce using rule 37 (base -> MINUS base .)
+    $end            reduce using rule 37 (base -> MINUS base .)
+    CATCH           reduce using rule 37 (base -> MINUS base .)
+    END             reduce using rule 37 (base -> MINUS base .)
+    FALLBACK        reduce using rule 37 (base -> MINUS base .)
+    EQT             reduce using rule 37 (base -> MINUS base .)
+    NEQT            reduce using rule 37 (base -> MINUS base .)
+    LT              reduce using rule 37 (base -> MINUS base .)
+    GT              reduce using rule 37 (base -> MINUS base .)
+    LTE             reduce using rule 37 (base -> MINUS base .)
+    GTE             reduce using rule 37 (base -> MINUS base .)
+    RT_PARENT       reduce using rule 37 (base -> MINUS base .)
+
+
+state 39
+
+    (32) factor -> base POWER . factor
+    (32) factor -> . base POWER factor
+    (33) factor -> . base
+    (34) base -> . NUMBER
+    (35) base -> . ID
+    (36) base -> . LT_PARENT expression RT_PARENT
+    (37) base -> . MINUS base
+
+    NUMBER          shift and go to state 25
+    ID              shift and go to state 26
+    LT_PARENT       shift and go to state 27
+    MINUS           shift and go to state 22
+
+    base                           shift and go to state 24
+    factor                         shift and go to state 55
+
+state 40
+
+    (36) base -> LT_PARENT expression . RT_PARENT
+    (26) expression -> expression . PLUS term
+    (27) expression -> expression . MINUS term
+
+    RT_PARENT       shift and go to state 56
+    PLUS            shift and go to state 34
+    MINUS           shift and go to state 35
+
+
+state 41
+
+    (16) try_catch -> TRY statement_list CATCH . statement_list END
+    (2) statement_list -> . statement
+    (3) statement_list -> . statement_list statement
+    (4) statement -> . declaration
+    (5) statement -> . broadcast_stmt
+    (6) statement -> . try_catch
+    (7) statement -> . if_stmt
+    (8) statement -> . cycle_stmt
+    (9) statement -> . NEWLINE
+    (10) declaration -> . YOUARE ID ASSIGNTO expression
+    (11) broadcast_stmt -> . BROADCAST broadcast_args
+    (16) try_catch -> . TRY statement_list CATCH statement_list END
+    (17) if_stmt -> . IF condition statement_list END
+    (18) if_stmt -> . IF condition statement_list FALLBACK statement_list END
+    (19) cycle_stmt -> . CYCLE condition statement_list END
+
+    NEWLINE         shift and go to state 9
+    YOUARE          shift and go to state 10
+    BROADCAST       shift and go to state 11
+    TRY             shift and go to state 12
+    IF              shift and go to state 13
+    CYCLE           shift and go to state 14
+
+    statement_list                 shift and go to state 57
+    statement                      shift and go to state 3
+    declaration                    shift and go to state 4
+    broadcast_stmt                 shift and go to state 5
+    try_catch                      shift and go to state 6
+    if_stmt                        shift and go to state 7
+    cycle_stmt                     shift and go to state 8
+
+state 42
+
+    (17) if_stmt -> IF condition statement_list . END
+    (18) if_stmt -> IF condition statement_list . FALLBACK statement_list END
+    (3) statement_list -> statement_list . statement
+    (4) statement -> . declaration
+    (5) statement -> . broadcast_stmt
+    (6) statement -> . try_catch
+    (7) statement -> . if_stmt
+    (8) statement -> . cycle_stmt
+    (9) statement -> . NEWLINE
+    (10) declaration -> . YOUARE ID ASSIGNTO expression
+    (11) broadcast_stmt -> . BROADCAST broadcast_args
+    (16) try_catch -> . TRY statement_list CATCH statement_list END
+    (17) if_stmt -> . IF condition statement_list END
+    (18) if_stmt -> . IF condition statement_list FALLBACK statement_list END
+    (19) cycle_stmt -> . CYCLE condition statement_list END
+
+    END             shift and go to state 58
+    FALLBACK        shift and go to state 59
+    NEWLINE         shift and go to state 9
+    YOUARE          shift and go to state 10
+    BROADCAST       shift and go to state 11
+    TRY             shift and go to state 12
+    IF              shift and go to state 13
+    CYCLE           shift and go to state 14
+
+    statement                      shift and go to state 15
+    declaration                    shift and go to state 4
+    broadcast_stmt                 shift and go to state 5
+    try_catch                      shift and go to state 6
+    if_stmt                        shift and go to state 7
+    cycle_stmt                     shift and go to state 8
+
+state 43
+
+    (20) condition -> expression EQT . expression
+    (26) expression -> . expression PLUS term
+    (27) expression -> . expression MINUS term
+    (28) expression -> . term
+    (29) term -> . term TIMES factor
+    (30) term -> . term DIVIDE factor
+    (31) term -> . factor
+    (32) factor -> . base POWER factor
+    (33) factor -> . base
+    (34) base -> . NUMBER
+    (35) base -> . ID
+    (36) base -> . LT_PARENT expression RT_PARENT
+    (37) base -> . MINUS base
+
+    NUMBER          shift and go to state 25
+    ID              shift and go to state 26
+    LT_PARENT       shift and go to state 27
+    MINUS           shift and go to state 22
+
+    expression                     shift and go to state 60
+    term                           shift and go to state 21
+    factor                         shift and go to state 23
+    base                           shift and go to state 24
+
+state 44
+
+    (21) condition -> expression NEQT . expression
+    (26) expression -> . expression PLUS term
+    (27) expression -> . expression MINUS term
+    (28) expression -> . term
+    (29) term -> . term TIMES factor
+    (30) term -> . term DIVIDE factor
+    (31) term -> . factor
+    (32) factor -> . base POWER factor
+    (33) factor -> . base
+    (34) base -> . NUMBER
+    (35) base -> . ID
+    (36) base -> . LT_PARENT expression RT_PARENT
+    (37) base -> . MINUS base
+
+    NUMBER          shift and go to state 25
+    ID              shift and go to state 26
+    LT_PARENT       shift and go to state 27
+    MINUS           shift and go to state 22
+
+    expression                     shift and go to state 61
+    term                           shift and go to state 21
+    factor                         shift and go to state 23
+    base                           shift and go to state 24
+
+state 45
+
+    (22) condition -> expression LT . expression
+    (26) expression -> . expression PLUS term
+    (27) expression -> . expression MINUS term
+    (28) expression -> . term
+    (29) term -> . term TIMES factor
+    (30) term -> . term DIVIDE factor
+    (31) term -> . factor
+    (32) factor -> . base POWER factor
+    (33) factor -> . base
+    (34) base -> . NUMBER
+    (35) base -> . ID
+    (36) base -> . LT_PARENT expression RT_PARENT
+    (37) base -> . MINUS base
+
+    NUMBER          shift and go to state 25
+    ID              shift and go to state 26
+    LT_PARENT       shift and go to state 27
+    MINUS           shift and go to state 22
+
+    expression                     shift and go to state 62
+    term                           shift and go to state 21
+    factor                         shift and go to state 23
+    base                           shift and go to state 24
+
+state 46
+
+    (23) condition -> expression GT . expression
+    (26) expression -> . expression PLUS term
+    (27) expression -> . expression MINUS term
+    (28) expression -> . term
+    (29) term -> . term TIMES factor
+    (30) term -> . term DIVIDE factor
+    (31) term -> . factor
+    (32) factor -> . base POWER factor
+    (33) factor -> . base
+    (34) base -> . NUMBER
+    (35) base -> . ID
+    (36) base -> . LT_PARENT expression RT_PARENT
+    (37) base -> . MINUS base
+
+    NUMBER          shift and go to state 25
+    ID              shift and go to state 26
+    LT_PARENT       shift and go to state 27
+    MINUS           shift and go to state 22
+
+    expression                     shift and go to state 63
+    term                           shift and go to state 21
+    factor                         shift and go to state 23
+    base                           shift and go to state 24
+
+state 47
+
+    (24) condition -> expression LTE . expression
+    (26) expression -> . expression PLUS term
+    (27) expression -> . expression MINUS term
+    (28) expression -> . term
+    (29) term -> . term TIMES factor
+    (30) term -> . term DIVIDE factor
+    (31) term -> . factor
+    (32) factor -> . base POWER factor
+    (33) factor -> . base
+    (34) base -> . NUMBER
+    (35) base -> . ID
+    (36) base -> . LT_PARENT expression RT_PARENT
+    (37) base -> . MINUS base
+
+    NUMBER          shift and go to state 25
+    ID              shift and go to state 26
+    LT_PARENT       shift and go to state 27
+    MINUS           shift and go to state 22
+
+    expression                     shift and go to state 64
+    term                           shift and go to state 21
+    factor                         shift and go to state 23
+    base                           shift and go to state 24
+
+state 48
+
+    (25) condition -> expression GTE . expression
+    (26) expression -> . expression PLUS term
+    (27) expression -> . expression MINUS term
+    (28) expression -> . term
+    (29) term -> . term TIMES factor
+    (30) term -> . term DIVIDE factor
+    (31) term -> . factor
+    (32) factor -> . base POWER factor
+    (33) factor -> . base
+    (34) base -> . NUMBER
+    (35) base -> . ID
+    (36) base -> . LT_PARENT expression RT_PARENT
+    (37) base -> . MINUS base
+
+    NUMBER          shift and go to state 25
+    ID              shift and go to state 26
+    LT_PARENT       shift and go to state 27
+    MINUS           shift and go to state 22
+
+    expression                     shift and go to state 65
+    term                           shift and go to state 21
+    factor                         shift and go to state 23
+    base                           shift and go to state 24
+
+state 49
+
+    (19) cycle_stmt -> CYCLE condition statement_list . END
+    (3) statement_list -> statement_list . statement
+    (4) statement -> . declaration
+    (5) statement -> . broadcast_stmt
+    (6) statement -> . try_catch
+    (7) statement -> . if_stmt
+    (8) statement -> . cycle_stmt
+    (9) statement -> . NEWLINE
+    (10) declaration -> . YOUARE ID ASSIGNTO expression
+    (11) broadcast_stmt -> . BROADCAST broadcast_args
+    (16) try_catch -> . TRY statement_list CATCH statement_list END
+    (17) if_stmt -> . IF condition statement_list END
+    (18) if_stmt -> . IF condition statement_list FALLBACK statement_list END
+    (19) cycle_stmt -> . CYCLE condition statement_list END
+
+    END             shift and go to state 66
+    NEWLINE         shift and go to state 9
+    YOUARE          shift and go to state 10
+    BROADCAST       shift and go to state 11
+    TRY             shift and go to state 12
+    IF              shift and go to state 13
+    CYCLE           shift and go to state 14
+
+    statement                      shift and go to state 15
+    declaration                    shift and go to state 4
+    broadcast_stmt                 shift and go to state 5
+    try_catch                      shift and go to state 6
+    if_stmt                        shift and go to state 7
+    cycle_stmt                     shift and go to state 8
+
+state 50
+
+    (10) declaration -> YOUARE ID ASSIGNTO expression .
+    (26) expression -> expression . PLUS term
+    (27) expression -> expression . MINUS term
+
+    NEWLINE         reduce using rule 10 (declaration -> YOUARE ID ASSIGNTO expression .)
+    YOUARE          reduce using rule 10 (declaration -> YOUARE ID ASSIGNTO expression .)
+    BROADCAST       reduce using rule 10 (declaration -> YOUARE ID ASSIGNTO expression .)
+    TRY             reduce using rule 10 (declaration -> YOUARE ID ASSIGNTO expression .)
+    IF              reduce using rule 10 (declaration -> YOUARE ID ASSIGNTO expression .)
+    CYCLE           reduce using rule 10 (declaration -> YOUARE ID ASSIGNTO expression .)
+    $end            reduce using rule 10 (declaration -> YOUARE ID ASSIGNTO expression .)
+    CATCH           reduce using rule 10 (declaration -> YOUARE ID ASSIGNTO expression .)
+    END             reduce using rule 10 (declaration -> YOUARE ID ASSIGNTO expression .)
+    FALLBACK        reduce using rule 10 (declaration -> YOUARE ID ASSIGNTO expression .)
+    PLUS            shift and go to state 34
+    MINUS           shift and go to state 35
+
+
+state 51
+
+    (26) expression -> expression PLUS term .
+    (29) term -> term . TIMES factor
+    (30) term -> term . DIVIDE factor
+
+    PLUS            reduce using rule 26 (expression -> expression PLUS term .)
+    MINUS           reduce using rule 26 (expression -> expression PLUS term .)
+    STRING          reduce using rule 26 (expression -> expression PLUS term .)
+    NUMBER          reduce using rule 26 (expression -> expression PLUS term .)
+    ID              reduce using rule 26 (expression -> expression PLUS term .)
+    LT_PARENT       reduce using rule 26 (expression -> expression PLUS term .)
+    NEWLINE         reduce using rule 26 (expression -> expression PLUS term .)
+    YOUARE          reduce using rule 26 (expression -> expression PLUS term .)
+    BROADCAST       reduce using rule 26 (expression -> expression PLUS term .)
+    TRY             reduce using rule 26 (expression -> expression PLUS term .)
+    IF              reduce using rule 26 (expression -> expression PLUS term .)
+    CYCLE           reduce using rule 26 (expression -> expression PLUS term .)
+    $end            reduce using rule 26 (expression -> expression PLUS term .)
+    CATCH           reduce using rule 26 (expression -> expression PLUS term .)
+    END             reduce using rule 26 (expression -> expression PLUS term .)
+    FALLBACK        reduce using rule 26 (expression -> expression PLUS term .)
+    EQT             reduce using rule 26 (expression -> expression PLUS term .)
+    NEQT            reduce using rule 26 (expression -> expression PLUS term .)
+    LT              reduce using rule 26 (expression -> expression PLUS term .)
+    GT              reduce using rule 26 (expression -> expression PLUS term .)
+    LTE             reduce using rule 26 (expression -> expression PLUS term .)
+    GTE             reduce using rule 26 (expression -> expression PLUS term .)
+    RT_PARENT       reduce using rule 26 (expression -> expression PLUS term .)
+    TIMES           shift and go to state 36
+    DIVIDE          shift and go to state 37
+
+
+state 52
+
+    (27) expression -> expression MINUS term .
+    (29) term -> term . TIMES factor
+    (30) term -> term . DIVIDE factor
+
+    PLUS            reduce using rule 27 (expression -> expression MINUS term .)
+    MINUS           reduce using rule 27 (expression -> expression MINUS term .)
+    STRING          reduce using rule 27 (expression -> expression MINUS term .)
+    NUMBER          reduce using rule 27 (expression -> expression MINUS term .)
+    ID              reduce using rule 27 (expression -> expression MINUS term .)
+    LT_PARENT       reduce using rule 27 (expression -> expression MINUS term .)
+    NEWLINE         reduce using rule 27 (expression -> expression MINUS term .)
+    YOUARE          reduce using rule 27 (expression -> expression MINUS term .)
+    BROADCAST       reduce using rule 27 (expression -> expression MINUS term .)
+    TRY             reduce using rule 27 (expression -> expression MINUS term .)
+    IF              reduce using rule 27 (expression -> expression MINUS term .)
+    CYCLE           reduce using rule 27 (expression -> expression MINUS term .)
+    $end            reduce using rule 27 (expression -> expression MINUS term .)
+    CATCH           reduce using rule 27 (expression -> expression MINUS term .)
+    END             reduce using rule 27 (expression -> expression MINUS term .)
+    FALLBACK        reduce using rule 27 (expression -> expression MINUS term .)
+    EQT             reduce using rule 27 (expression -> expression MINUS term .)
+    NEQT            reduce using rule 27 (expression -> expression MINUS term .)
+    LT              reduce using rule 27 (expression -> expression MINUS term .)
+    GT              reduce using rule 27 (expression -> expression MINUS term .)
+    LTE             reduce using rule 27 (expression -> expression MINUS term .)
+    GTE             reduce using rule 27 (expression -> expression MINUS term .)
+    RT_PARENT       reduce using rule 27 (expression -> expression MINUS term .)
+    TIMES           shift and go to state 36
+    DIVIDE          shift and go to state 37
+
+
+state 53
+
+    (29) term -> term TIMES factor .
+
+    TIMES           reduce using rule 29 (term -> term TIMES factor .)
+    DIVIDE          reduce using rule 29 (term -> term TIMES factor .)
+    PLUS            reduce using rule 29 (term -> term TIMES factor .)
+    MINUS           reduce using rule 29 (term -> term TIMES factor .)
+    STRING          reduce using rule 29 (term -> term TIMES factor .)
+    NUMBER          reduce using rule 29 (term -> term TIMES factor .)
+    ID              reduce using rule 29 (term -> term TIMES factor .)
+    LT_PARENT       reduce using rule 29 (term -> term TIMES factor .)
+    NEWLINE         reduce using rule 29 (term -> term TIMES factor .)
+    YOUARE          reduce using rule 29 (term -> term TIMES factor .)
+    BROADCAST       reduce using rule 29 (term -> term TIMES factor .)
+    TRY             reduce using rule 29 (term -> term TIMES factor .)
+    IF              reduce using rule 29 (term -> term TIMES factor .)
+    CYCLE           reduce using rule 29 (term -> term TIMES factor .)
+    $end            reduce using rule 29 (term -> term TIMES factor .)
+    CATCH           reduce using rule 29 (term -> term TIMES factor .)
+    END             reduce using rule 29 (term -> term TIMES factor .)
+    FALLBACK        reduce using rule 29 (term -> term TIMES factor .)
+    EQT             reduce using rule 29 (term -> term TIMES factor .)
+    NEQT            reduce using rule 29 (term -> term TIMES factor .)
+    LT              reduce using rule 29 (term -> term TIMES factor .)
+    GT              reduce using rule 29 (term -> term TIMES factor .)
+    LTE             reduce using rule 29 (term -> term TIMES factor .)
+    GTE             reduce using rule 29 (term -> term TIMES factor .)
+    RT_PARENT       reduce using rule 29 (term -> term TIMES factor .)
+
+
+state 54
+
+    (30) term -> term DIVIDE factor .
+
+    TIMES           reduce using rule 30 (term -> term DIVIDE factor .)
+    DIVIDE          reduce using rule 30 (term -> term DIVIDE factor .)
+    PLUS            reduce using rule 30 (term -> term DIVIDE factor .)
+    MINUS           reduce using rule 30 (term -> term DIVIDE factor .)
+    STRING          reduce using rule 30 (term -> term DIVIDE factor .)
+    NUMBER          reduce using rule 30 (term -> term DIVIDE factor .)
+    ID              reduce using rule 30 (term -> term DIVIDE factor .)
+    LT_PARENT       reduce using rule 30 (term -> term DIVIDE factor .)
+    NEWLINE         reduce using rule 30 (term -> term DIVIDE factor .)
+    YOUARE          reduce using rule 30 (term -> term DIVIDE factor .)
+    BROADCAST       reduce using rule 30 (term -> term DIVIDE factor .)
+    TRY             reduce using rule 30 (term -> term DIVIDE factor .)
+    IF              reduce using rule 30 (term -> term DIVIDE factor .)
+    CYCLE           reduce using rule 30 (term -> term DIVIDE factor .)
+    $end            reduce using rule 30 (term -> term DIVIDE factor .)
+    CATCH           reduce using rule 30 (term -> term DIVIDE factor .)
+    END             reduce using rule 30 (term -> term DIVIDE factor .)
+    FALLBACK        reduce using rule 30 (term -> term DIVIDE factor .)
+    EQT             reduce using rule 30 (term -> term DIVIDE factor .)
+    NEQT            reduce using rule 30 (term -> term DIVIDE factor .)
+    LT              reduce using rule 30 (term -> term DIVIDE factor .)
+    GT              reduce using rule 30 (term -> term DIVIDE factor .)
+    LTE             reduce using rule 30 (term -> term DIVIDE factor .)
+    GTE             reduce using rule 30 (term -> term DIVIDE factor .)
+    RT_PARENT       reduce using rule 30 (term -> term DIVIDE factor .)
+
+
+state 55
+
+    (32) factor -> base POWER factor .
+
+    TIMES           reduce using rule 32 (factor -> base POWER factor .)
+    DIVIDE          reduce using rule 32 (factor -> base POWER factor .)
+    PLUS            reduce using rule 32 (factor -> base POWER factor .)
+    MINUS           reduce using rule 32 (factor -> base POWER factor .)
+    STRING          reduce using rule 32 (factor -> base POWER factor .)
+    NUMBER          reduce using rule 32 (factor -> base POWER factor .)
+    ID              reduce using rule 32 (factor -> base POWER factor .)
+    LT_PARENT       reduce using rule 32 (factor -> base POWER factor .)
+    NEWLINE         reduce using rule 32 (factor -> base POWER factor .)
+    YOUARE          reduce using rule 32 (factor -> base POWER factor .)
+    BROADCAST       reduce using rule 32 (factor -> base POWER factor .)
+    TRY             reduce using rule 32 (factor -> base POWER factor .)
+    IF              reduce using rule 32 (factor -> base POWER factor .)
+    CYCLE           reduce using rule 32 (factor -> base POWER factor .)
+    $end            reduce using rule 32 (factor -> base POWER factor .)
+    CATCH           reduce using rule 32 (factor -> base POWER factor .)
+    END             reduce using rule 32 (factor -> base POWER factor .)
+    FALLBACK        reduce using rule 32 (factor -> base POWER factor .)
+    EQT             reduce using rule 32 (factor -> base POWER factor .)
+    NEQT            reduce using rule 32 (factor -> base POWER factor .)
+    LT              reduce using rule 32 (factor -> base POWER factor .)
+    GT              reduce using rule 32 (factor -> base POWER factor .)
+    LTE             reduce using rule 32 (factor -> base POWER factor .)
+    GTE             reduce using rule 32 (factor -> base POWER factor .)
+    RT_PARENT       reduce using rule 32 (factor -> base POWER factor .)
+
+
+state 56
+
+    (36) base -> LT_PARENT expression RT_PARENT .
+
+    POWER           reduce using rule 36 (base -> LT_PARENT expression RT_PARENT .)
+    TIMES           reduce using rule 36 (base -> LT_PARENT expression RT_PARENT .)
+    DIVIDE          reduce using rule 36 (base -> LT_PARENT expression RT_PARENT .)
+    PLUS            reduce using rule 36 (base -> LT_PARENT expression RT_PARENT .)
+    MINUS           reduce using rule 36 (base -> LT_PARENT expression RT_PARENT .)
+    STRING          reduce using rule 36 (base -> LT_PARENT expression RT_PARENT .)
+    NUMBER          reduce using rule 36 (base -> LT_PARENT expression RT_PARENT .)
+    ID              reduce using rule 36 (base -> LT_PARENT expression RT_PARENT .)
+    LT_PARENT       reduce using rule 36 (base -> LT_PARENT expression RT_PARENT .)
+    NEWLINE         reduce using rule 36 (base -> LT_PARENT expression RT_PARENT .)
+    YOUARE          reduce using rule 36 (base -> LT_PARENT expression RT_PARENT .)
+    BROADCAST       reduce using rule 36 (base -> LT_PARENT expression RT_PARENT .)
+    TRY             reduce using rule 36 (base -> LT_PARENT expression RT_PARENT .)
+    IF              reduce using rule 36 (base -> LT_PARENT expression RT_PARENT .)
+    CYCLE           reduce using rule 36 (base -> LT_PARENT expression RT_PARENT .)
+    $end            reduce using rule 36 (base -> LT_PARENT expression RT_PARENT .)
+    CATCH           reduce using rule 36 (base -> LT_PARENT expression RT_PARENT .)
+    END             reduce using rule 36 (base -> LT_PARENT expression RT_PARENT .)
+    FALLBACK        reduce using rule 36 (base -> LT_PARENT expression RT_PARENT .)
+    EQT             reduce using rule 36 (base -> LT_PARENT expression RT_PARENT .)
+    NEQT            reduce using rule 36 (base -> LT_PARENT expression RT_PARENT .)
+    LT              reduce using rule 36 (base -> LT_PARENT expression RT_PARENT .)
+    GT              reduce using rule 36 (base -> LT_PARENT expression RT_PARENT .)
+    LTE             reduce using rule 36 (base -> LT_PARENT expression RT_PARENT .)
+    GTE             reduce using rule 36 (base -> LT_PARENT expression RT_PARENT .)
+    RT_PARENT       reduce using rule 36 (base -> LT_PARENT expression RT_PARENT .)
+
+
+state 57
+
+    (16) try_catch -> TRY statement_list CATCH statement_list . END
+    (3) statement_list -> statement_list . statement
+    (4) statement -> . declaration
+    (5) statement -> . broadcast_stmt
+    (6) statement -> . try_catch
+    (7) statement -> . if_stmt
+    (8) statement -> . cycle_stmt
+    (9) statement -> . NEWLINE
+    (10) declaration -> . YOUARE ID ASSIGNTO expression
+    (11) broadcast_stmt -> . BROADCAST broadcast_args
+    (16) try_catch -> . TRY statement_list CATCH statement_list END
+    (17) if_stmt -> . IF condition statement_list END
+    (18) if_stmt -> . IF condition statement_list FALLBACK statement_list END
+    (19) cycle_stmt -> . CYCLE condition statement_list END
+
+    END             shift and go to state 67
+    NEWLINE         shift and go to state 9
+    YOUARE          shift and go to state 10
+    BROADCAST       shift and go to state 11
+    TRY             shift and go to state 12
+    IF              shift and go to state 13
+    CYCLE           shift and go to state 14
+
+    statement                      shift and go to state 15
+    declaration                    shift and go to state 4
+    broadcast_stmt                 shift and go to state 5
+    try_catch                      shift and go to state 6
+    if_stmt                        shift and go to state 7
+    cycle_stmt                     shift and go to state 8
+
+state 58
+
+    (17) if_stmt -> IF condition statement_list END .
+
+    NEWLINE         reduce using rule 17 (if_stmt -> IF condition statement_list END .)
+    YOUARE          reduce using rule 17 (if_stmt -> IF condition statement_list END .)
+    BROADCAST       reduce using rule 17 (if_stmt -> IF condition statement_list END .)
+    TRY             reduce using rule 17 (if_stmt -> IF condition statement_list END .)
+    IF              reduce using rule 17 (if_stmt -> IF condition statement_list END .)
+    CYCLE           reduce using rule 17 (if_stmt -> IF condition statement_list END .)
+    $end            reduce using rule 17 (if_stmt -> IF condition statement_list END .)
+    CATCH           reduce using rule 17 (if_stmt -> IF condition statement_list END .)
+    END             reduce using rule 17 (if_stmt -> IF condition statement_list END .)
+    FALLBACK        reduce using rule 17 (if_stmt -> IF condition statement_list END .)
+
+
+state 59
+
+    (18) if_stmt -> IF condition statement_list FALLBACK . statement_list END
+    (2) statement_list -> . statement
+    (3) statement_list -> . statement_list statement
+    (4) statement -> . declaration
+    (5) statement -> . broadcast_stmt
+    (6) statement -> . try_catch
+    (7) statement -> . if_stmt
+    (8) statement -> . cycle_stmt
+    (9) statement -> . NEWLINE
+    (10) declaration -> . YOUARE ID ASSIGNTO expression
+    (11) broadcast_stmt -> . BROADCAST broadcast_args
+    (16) try_catch -> . TRY statement_list CATCH statement_list END
+    (17) if_stmt -> . IF condition statement_list END
+    (18) if_stmt -> . IF condition statement_list FALLBACK statement_list END
+    (19) cycle_stmt -> . CYCLE condition statement_list END
+
+    NEWLINE         shift and go to state 9
+    YOUARE          shift and go to state 10
+    BROADCAST       shift and go to state 11
+    TRY             shift and go to state 12
+    IF              shift and go to state 13
+    CYCLE           shift and go to state 14
+
+    statement_list                 shift and go to state 68
+    statement                      shift and go to state 3
+    declaration                    shift and go to state 4
+    broadcast_stmt                 shift and go to state 5
+    try_catch                      shift and go to state 6
+    if_stmt                        shift and go to state 7
+    cycle_stmt                     shift and go to state 8
+
+state 60
+
+    (20) condition -> expression EQT expression .
+    (26) expression -> expression . PLUS term
+    (27) expression -> expression . MINUS term
+
+    NEWLINE         reduce using rule 20 (condition -> expression EQT expression .)
+    YOUARE          reduce using rule 20 (condition -> expression EQT expression .)
+    BROADCAST       reduce using rule 20 (condition -> expression EQT expression .)
+    TRY             reduce using rule 20 (condition -> expression EQT expression .)
+    IF              reduce using rule 20 (condition -> expression EQT expression .)
+    CYCLE           reduce using rule 20 (condition -> expression EQT expression .)
+    PLUS            shift and go to state 34
+    MINUS           shift and go to state 35
+
+
+state 61
+
+    (21) condition -> expression NEQT expression .
+    (26) expression -> expression . PLUS term
+    (27) expression -> expression . MINUS term
+
+    NEWLINE         reduce using rule 21 (condition -> expression NEQT expression .)
+    YOUARE          reduce using rule 21 (condition -> expression NEQT expression .)
+    BROADCAST       reduce using rule 21 (condition -> expression NEQT expression .)
+    TRY             reduce using rule 21 (condition -> expression NEQT expression .)
+    IF              reduce using rule 21 (condition -> expression NEQT expression .)
+    CYCLE           reduce using rule 21 (condition -> expression NEQT expression .)
+    PLUS            shift and go to state 34
+    MINUS           shift and go to state 35
+
+
+state 62
+
+    (22) condition -> expression LT expression .
+    (26) expression -> expression . PLUS term
+    (27) expression -> expression . MINUS term
+
+    NEWLINE         reduce using rule 22 (condition -> expression LT expression .)
+    YOUARE          reduce using rule 22 (condition -> expression LT expression .)
+    BROADCAST       reduce using rule 22 (condition -> expression LT expression .)
+    TRY             reduce using rule 22 (condition -> expression LT expression .)
+    IF              reduce using rule 22 (condition -> expression LT expression .)
+    CYCLE           reduce using rule 22 (condition -> expression LT expression .)
+    PLUS            shift and go to state 34
+    MINUS           shift and go to state 35
+
+
+state 63
+
+    (23) condition -> expression GT expression .
+    (26) expression -> expression . PLUS term
+    (27) expression -> expression . MINUS term
+
+    NEWLINE         reduce using rule 23 (condition -> expression GT expression .)
+    YOUARE          reduce using rule 23 (condition -> expression GT expression .)
+    BROADCAST       reduce using rule 23 (condition -> expression GT expression .)
+    TRY             reduce using rule 23 (condition -> expression GT expression .)
+    IF              reduce using rule 23 (condition -> expression GT expression .)
+    CYCLE           reduce using rule 23 (condition -> expression GT expression .)
+    PLUS            shift and go to state 34
+    MINUS           shift and go to state 35
+
+
+state 64
+
+    (24) condition -> expression LTE expression .
+    (26) expression -> expression . PLUS term
+    (27) expression -> expression . MINUS term
+
+    NEWLINE         reduce using rule 24 (condition -> expression LTE expression .)
+    YOUARE          reduce using rule 24 (condition -> expression LTE expression .)
+    BROADCAST       reduce using rule 24 (condition -> expression LTE expression .)
+    TRY             reduce using rule 24 (condition -> expression LTE expression .)
+    IF              reduce using rule 24 (condition -> expression LTE expression .)
+    CYCLE           reduce using rule 24 (condition -> expression LTE expression .)
+    PLUS            shift and go to state 34
+    MINUS           shift and go to state 35
+
+
+state 65
+
+    (25) condition -> expression GTE expression .
+    (26) expression -> expression . PLUS term
+    (27) expression -> expression . MINUS term
+
+    NEWLINE         reduce using rule 25 (condition -> expression GTE expression .)
+    YOUARE          reduce using rule 25 (condition -> expression GTE expression .)
+    BROADCAST       reduce using rule 25 (condition -> expression GTE expression .)
+    TRY             reduce using rule 25 (condition -> expression GTE expression .)
+    IF              reduce using rule 25 (condition -> expression GTE expression .)
+    CYCLE           reduce using rule 25 (condition -> expression GTE expression .)
+    PLUS            shift and go to state 34
+    MINUS           shift and go to state 35
+
+
+state 66
+
+    (19) cycle_stmt -> CYCLE condition statement_list END .
+
+    NEWLINE         reduce using rule 19 (cycle_stmt -> CYCLE condition statement_list END .)
+    YOUARE          reduce using rule 19 (cycle_stmt -> CYCLE condition statement_list END .)
+    BROADCAST       reduce using rule 19 (cycle_stmt -> CYCLE condition statement_list END .)
+    TRY             reduce using rule 19 (cycle_stmt -> CYCLE condition statement_list END .)
+    IF              reduce using rule 19 (cycle_stmt -> CYCLE condition statement_list END .)
+    CYCLE           reduce using rule 19 (cycle_stmt -> CYCLE condition statement_list END .)
+    $end            reduce using rule 19 (cycle_stmt -> CYCLE condition statement_list END .)
+    CATCH           reduce using rule 19 (cycle_stmt -> CYCLE condition statement_list END .)
+    END             reduce using rule 19 (cycle_stmt -> CYCLE condition statement_list END .)
+    FALLBACK        reduce using rule 19 (cycle_stmt -> CYCLE condition statement_list END .)
+
+
+state 67
+
+    (16) try_catch -> TRY statement_list CATCH statement_list END .
+
+    NEWLINE         reduce using rule 16 (try_catch -> TRY statement_list CATCH statement_list END .)
+    YOUARE          reduce using rule 16 (try_catch -> TRY statement_list CATCH statement_list END .)
+    BROADCAST       reduce using rule 16 (try_catch -> TRY statement_list CATCH statement_list END .)
+    TRY             reduce using rule 16 (try_catch -> TRY statement_list CATCH statement_list END .)
+    IF              reduce using rule 16 (try_catch -> TRY statement_list CATCH statement_list END .)
+    CYCLE           reduce using rule 16 (try_catch -> TRY statement_list CATCH statement_list END .)
+    $end            reduce using rule 16 (try_catch -> TRY statement_list CATCH statement_list END .)
+    CATCH           reduce using rule 16 (try_catch -> TRY statement_list CATCH statement_list END .)
+    END             reduce using rule 16 (try_catch -> TRY statement_list CATCH statement_list END .)
+    FALLBACK        reduce using rule 16 (try_catch -> TRY statement_list CATCH statement_list END .)
+
+
+state 68
+
+    (18) if_stmt -> IF condition statement_list FALLBACK statement_list . END
+    (3) statement_list -> statement_list . statement
+    (4) statement -> . declaration
+    (5) statement -> . broadcast_stmt
+    (6) statement -> . try_catch
+    (7) statement -> . if_stmt
+    (8) statement -> . cycle_stmt
+    (9) statement -> . NEWLINE
+    (10) declaration -> . YOUARE ID ASSIGNTO expression
+    (11) broadcast_stmt -> . BROADCAST broadcast_args
+    (16) try_catch -> . TRY statement_list CATCH statement_list END
+    (17) if_stmt -> . IF condition statement_list END
+    (18) if_stmt -> . IF condition statement_list FALLBACK statement_list END
+    (19) cycle_stmt -> . CYCLE condition statement_list END
+
+    END             shift and go to state 69
+    NEWLINE         shift and go to state 9
+    YOUARE          shift and go to state 10
+    BROADCAST       shift and go to state 11
+    TRY             shift and go to state 12
+    IF              shift and go to state 13
+    CYCLE           shift and go to state 14
+
+    statement                      shift and go to state 15
+    declaration                    shift and go to state 4
+    broadcast_stmt                 shift and go to state 5
+    try_catch                      shift and go to state 6
+    if_stmt                        shift and go to state 7
+    cycle_stmt                     shift and go to state 8
+
+state 69
+
+    (18) if_stmt -> IF condition statement_list FALLBACK statement_list END .
+
+    NEWLINE         reduce using rule 18 (if_stmt -> IF condition statement_list FALLBACK statement_list END .)
+    YOUARE          reduce using rule 18 (if_stmt -> IF condition statement_list FALLBACK statement_list END .)
+    BROADCAST       reduce using rule 18 (if_stmt -> IF condition statement_list FALLBACK statement_list END .)
+    TRY             reduce using rule 18 (if_stmt -> IF condition statement_list FALLBACK statement_list END .)
+    IF              reduce using rule 18 (if_stmt -> IF condition statement_list FALLBACK statement_list END .)
+    CYCLE           reduce using rule 18 (if_stmt -> IF condition statement_list FALLBACK statement_list END .)
+    $end            reduce using rule 18 (if_stmt -> IF condition statement_list FALLBACK statement_list END .)
+    CATCH           reduce using rule 18 (if_stmt -> IF condition statement_list FALLBACK statement_list END .)
+    END             reduce using rule 18 (if_stmt -> IF condition statement_list FALLBACK statement_list END .)
+    FALLBACK        reduce using rule 18 (if_stmt -> IF condition statement_list FALLBACK statement_list END .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for MINUS in state 20 resolved as shift
