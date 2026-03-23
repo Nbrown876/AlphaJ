@@ -19,13 +19,11 @@ class SemanticError(Exception):
     """Semantic Analysis Failure indicator."""
     pass
 
-
 @dataclass
 class Symbol:
     name: str
     var_type: str
     scope_level: int
-
 
 class SemanticAnalyzer:
     def __init__(self):
@@ -303,7 +301,6 @@ class SemanticAnalyzer:
         self.visit(left)
         self.visit(right)
         return "number"
-
 
  #── Test Runner ──
 if __name__ == "__main__":
