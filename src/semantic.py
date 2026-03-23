@@ -1,3 +1,16 @@
+# ============================================
+# Alpha J Language - Semantic Analyzer
+# Language: Alpha J
+# Course: CIT4004 - Analysis of Programming Languages
+# University of Technology, Jamaica
+# ============================================
+
+# What this does:
+# 1. Checks for undeclared variables
+# 2. Checks for redeclared variables
+# 3. Checks for division by zero
+
+
 from dataclasses import dataclass
 from typing import Dict, List, Optional
 
@@ -54,9 +67,14 @@ class SemanticAnalyzer:
     def analyze(self, ast):
         self.visit(ast)
         if self.errors:
-            raise SemanticError("\n".join(self.errors))
-
-        return True
+            print("\n[Alpha J Semantic Errors]")
+            for error in self.errors:
+                print(f" {error}")
+            print(f" {len(self.errors)} error(s) found. \n")     
+            
+        else:
+            print("\n Semantic Analysis Passed!")  
+        return len(self.errors) == 0
 
     # AST Visitor Dispatcher
     def visit(self, node):
@@ -242,3 +260,85 @@ class SemanticAnalyzer:
     def visit_notes(self, node):
         # notes are ignored during analysis
         return None
+
+
+    def visit_relop(self, node):
+        # node = ('relop', operator, left, right)
+        _, op, left, right = node
+        self.visit(left)
+        self.visit(right)
+        return "boolean"
+
+    def visit_binop(self, node):
+        # node = ('binop', operator, left, right)
+        _, op, left, right = node
+
+
+        # Divison by zero check
+        if op == '/' and right == 0:
+            self.errors.append("Semantic Error: Division by zero is not allowed.")
+        if op == '/' and isinstance(right, tuple) and len(right) > 1 and right[1] == 0:
+            self.errors.append("Semantic Error: Division by zero is not allowed.")
+
+        self.visit(left)
+        self.visit(right)
+        return "number"
+
+    def visit_unary_minus(self, node):
+        # node = ('unary_minus', expr)
+        _, expr = node
+        self.visit(expr)
+        return "number"
+
+    def visit_raw_binop(self, node):
+        # node = ('+'/'-'/'*'/'/'/ '^', left, right)
+        op, left, right = node
+
+        #Division by zero check
+        if op =='/' and right == 0:
+            self.errors.append("Semantic Error: Division by zero is not allowed.")
+        if op == '/' and isinstance(right, tuple) and len(right) > 1 and right[1] == 0:
+            self.errors.append("Semantic Error: Division by zero detected.")
+
+        self.visit(left)
+        self.visit(right)
+        return "number"
+
+
+ #── Test Runner ──
+if __name__ == "__main__":
+    import sys, os
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '../parser'))
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+
+    from parser.parser_1 import parser
+    from lexer import lexer
+
+    tests = {
+        "TEST 1 — Clean Program": """
+youare x = 10
+youare y = 5
+youare z = x + y
+broadcast "Result: " z
+""",
+        "TEST 2 — Undeclared Variable": """
+youare x = 10
+youare z = x + b
+""",
+        "TEST 3 — Redeclared Variable": """
+youare x = 10
+youare x = 20
+""",
+        "TEST 4 — Division by Zero": """
+youare x = 10
+youare y = x / 0
+""",
+    }
+
+    for name, code in tests.items():
+        print("=" * 40)
+        print(name)
+        print("=" * 40)
+        ast = parser.parse(code, lexer=lexer)
+        analyzer = SemanticAnalyzer()
+        analyzer.analyze(ast)
