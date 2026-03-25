@@ -305,11 +305,11 @@ class SemanticAnalyzer:
  #── Test Runner ──
 if __name__ == "__main__":
     import sys, os
-    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '../parser'))
-    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+    # Add the project root to sys.path so we can import from src
+    sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-    from parser.parser_1 import parser
-    from lexer import lexer
+    from src.parser.parser_1 import parser
+    from src.lexer import lexer
 
     tests = {
         "TEST 1 — Clean Program": """

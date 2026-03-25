@@ -33,6 +33,7 @@ def p_statement_list_multi(p):
 #types of statements
 def p_statement(p):
     '''statement : declaration
+            | assignment
             | broadcast_stmt
             | try_catch
             | if_stmt
@@ -43,6 +44,10 @@ def p_statement(p):
 def p_newline(p):
     '''statement : NEWLINE'''
     p[0] = None
+
+def p_assignment(p):
+    '''assignment : YOUARENOW ID ASSIGNTO expression'''
+    p[0] = ("assign", p[2], p[4])
 
 
 def p_declaration(p):
