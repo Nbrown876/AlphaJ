@@ -147,7 +147,7 @@ class Interpreter:
                         # Evaluating numeric/variable logic and casting to string representation
                         out_parts.append(str(self.evaluate(arg[1]))) 
                 
-                self.log_output(" ".join(out_parts))
+                self.log_output("".join(out_parts))
                 return None
 
             # Exception Catch Logic

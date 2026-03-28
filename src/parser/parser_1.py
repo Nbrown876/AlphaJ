@@ -46,8 +46,8 @@ def p_newline(p):
     p[0] = None
 
 def p_assignment(p):
-    '''assignment : YOUARENOW ID ASSIGNTO expression'''
-    p[0] = ("assign", p[2], p[4])
+    '''assignment : ID ASSIGNTO expression'''
+    p[0] = ("assign", p[1], p[3])
 
 
 def p_declaration(p):
@@ -174,7 +174,7 @@ if __name__ == "__main__":
 
     cycle x < 15
         broadcast x
-        youare x = x + 1
+        x = x + 1
     end
 
     try

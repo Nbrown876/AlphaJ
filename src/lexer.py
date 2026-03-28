@@ -9,7 +9,6 @@ import ply.lex as lex
 # Reserved Keywords
 reserved = {
     'youare'     : 'YOUARE',
-    'youarenow'  : 'YOUARENOW',
     'broadcast'  : 'BROADCAST',
     'try'        : 'TRY',
     'catch'      : 'CATCH',

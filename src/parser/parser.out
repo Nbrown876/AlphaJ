@@ -17,7 +17,7 @@ Rule 7     statement -> try_catch
 Rule 8     statement -> if_stmt
 Rule 9     statement -> cycle_stmt
 Rule 10    statement -> NEWLINE
-Rule 11    assignment -> YOUARENOW ID ASSIGNTO expression
+Rule 11    assignment -> ID ASSIGNTO expression
 Rule 12    declaration -> YOUARE ID ASSIGNTO expression
 Rule 13    broadcast_stmt -> BROADCAST broadcast_args
 Rule 14    broadcast_args -> broadcast_arg
@@ -76,7 +76,6 @@ STRING               : 16
 TIMES                : 31
 TRY                  : 18
 YOUARE               : 12
-YOUARENOW            : 11
 error                : 
 
 Nonterminals, with rules where they appear
@@ -114,7 +113,7 @@ state 0
     (9) statement -> . cycle_stmt
     (10) statement -> . NEWLINE
     (12) declaration -> . YOUARE ID ASSIGNTO expression
-    (11) assignment -> . YOUARENOW ID ASSIGNTO expression
+    (11) assignment -> . ID ASSIGNTO expression
     (13) broadcast_stmt -> . BROADCAST broadcast_args
     (18) try_catch -> . TRY statement_list CATCH statement_list END
     (19) if_stmt -> . IF condition statement_list END
@@ -123,7 +122,7 @@ state 0
 
     NEWLINE         shift and go to state 10
     YOUARE          shift and go to state 11
-    YOUARENOW       shift and go to state 12
+    ID              shift and go to state 12
     BROADCAST       shift and go to state 13
     TRY             shift and go to state 14
     IF              shift and go to state 15
@@ -157,7 +156,7 @@ state 2
     (9) statement -> . cycle_stmt
     (10) statement -> . NEWLINE
     (12) declaration -> . YOUARE ID ASSIGNTO expression
-    (11) assignment -> . YOUARENOW ID ASSIGNTO expression
+    (11) assignment -> . ID ASSIGNTO expression
     (13) broadcast_stmt -> . BROADCAST broadcast_args
     (18) try_catch -> . TRY statement_list CATCH statement_list END
     (19) if_stmt -> . IF condition statement_list END
@@ -167,7 +166,7 @@ state 2
     $end            reduce using rule 1 (program -> statement_list .)
     NEWLINE         shift and go to state 10
     YOUARE          shift and go to state 11
-    YOUARENOW       shift and go to state 12
+    ID              shift and go to state 12
     BROADCAST       shift and go to state 13
     TRY             shift and go to state 14
     IF              shift and go to state 15
@@ -187,7 +186,7 @@ state 3
 
     NEWLINE         reduce using rule 2 (statement_list -> statement .)
     YOUARE          reduce using rule 2 (statement_list -> statement .)
-    YOUARENOW       reduce using rule 2 (statement_list -> statement .)
+    ID              reduce using rule 2 (statement_list -> statement .)
     BROADCAST       reduce using rule 2 (statement_list -> statement .)
     TRY             reduce using rule 2 (statement_list -> statement .)
     IF              reduce using rule 2 (statement_list -> statement .)
@@ -204,7 +203,7 @@ state 4
 
     NEWLINE         reduce using rule 4 (statement -> declaration .)
     YOUARE          reduce using rule 4 (statement -> declaration .)
-    YOUARENOW       reduce using rule 4 (statement -> declaration .)
+    ID              reduce using rule 4 (statement -> declaration .)
     BROADCAST       reduce using rule 4 (statement -> declaration .)
     TRY             reduce using rule 4 (statement -> declaration .)
     IF              reduce using rule 4 (statement -> declaration .)
@@ -221,7 +220,7 @@ state 5
 
     NEWLINE         reduce using rule 5 (statement -> assignment .)
     YOUARE          reduce using rule 5 (statement -> assignment .)
-    YOUARENOW       reduce using rule 5 (statement -> assignment .)
+    ID              reduce using rule 5 (statement -> assignment .)
     BROADCAST       reduce using rule 5 (statement -> assignment .)
     TRY             reduce using rule 5 (statement -> assignment .)
     IF              reduce using rule 5 (statement -> assignment .)
@@ -238,7 +237,7 @@ state 6
 
     NEWLINE         reduce using rule 6 (statement -> broadcast_stmt .)
     YOUARE          reduce using rule 6 (statement -> broadcast_stmt .)
-    YOUARENOW       reduce using rule 6 (statement -> broadcast_stmt .)
+    ID              reduce using rule 6 (statement -> broadcast_stmt .)
     BROADCAST       reduce using rule 6 (statement -> broadcast_stmt .)
     TRY             reduce using rule 6 (statement -> broadcast_stmt .)
     IF              reduce using rule 6 (statement -> broadcast_stmt .)
@@ -255,7 +254,7 @@ state 7
 
     NEWLINE         reduce using rule 7 (statement -> try_catch .)
     YOUARE          reduce using rule 7 (statement -> try_catch .)
-    YOUARENOW       reduce using rule 7 (statement -> try_catch .)
+    ID              reduce using rule 7 (statement -> try_catch .)
     BROADCAST       reduce using rule 7 (statement -> try_catch .)
     TRY             reduce using rule 7 (statement -> try_catch .)
     IF              reduce using rule 7 (statement -> try_catch .)
@@ -272,7 +271,7 @@ state 8
 
     NEWLINE         reduce using rule 8 (statement -> if_stmt .)
     YOUARE          reduce using rule 8 (statement -> if_stmt .)
-    YOUARENOW       reduce using rule 8 (statement -> if_stmt .)
+    ID              reduce using rule 8 (statement -> if_stmt .)
     BROADCAST       reduce using rule 8 (statement -> if_stmt .)
     TRY             reduce using rule 8 (statement -> if_stmt .)
     IF              reduce using rule 8 (statement -> if_stmt .)
@@ -289,7 +288,7 @@ state 9
 
     NEWLINE         reduce using rule 9 (statement -> cycle_stmt .)
     YOUARE          reduce using rule 9 (statement -> cycle_stmt .)
-    YOUARENOW       reduce using rule 9 (statement -> cycle_stmt .)
+    ID              reduce using rule 9 (statement -> cycle_stmt .)
     BROADCAST       reduce using rule 9 (statement -> cycle_stmt .)
     TRY             reduce using rule 9 (statement -> cycle_stmt .)
     IF              reduce using rule 9 (statement -> cycle_stmt .)
@@ -306,7 +305,7 @@ state 10
 
     NEWLINE         reduce using rule 10 (statement -> NEWLINE .)
     YOUARE          reduce using rule 10 (statement -> NEWLINE .)
-    YOUARENOW       reduce using rule 10 (statement -> NEWLINE .)
+    ID              reduce using rule 10 (statement -> NEWLINE .)
     BROADCAST       reduce using rule 10 (statement -> NEWLINE .)
     TRY             reduce using rule 10 (statement -> NEWLINE .)
     IF              reduce using rule 10 (statement -> NEWLINE .)
@@ -326,9 +325,9 @@ state 11
 
 state 12
 
-    (11) assignment -> YOUARENOW . ID ASSIGNTO expression
+    (11) assignment -> ID . ASSIGNTO expression
 
-    ID              shift and go to state 19
+    ASSIGNTO        shift and go to state 19
 
 
 state 13
@@ -377,7 +376,7 @@ state 14
     (9) statement -> . cycle_stmt
     (10) statement -> . NEWLINE
     (12) declaration -> . YOUARE ID ASSIGNTO expression
-    (11) assignment -> . YOUARENOW ID ASSIGNTO expression
+    (11) assignment -> . ID ASSIGNTO expression
     (13) broadcast_stmt -> . BROADCAST broadcast_args
     (18) try_catch -> . TRY statement_list CATCH statement_list END
     (19) if_stmt -> . IF condition statement_list END
@@ -386,7 +385,7 @@ state 14
 
     NEWLINE         shift and go to state 10
     YOUARE          shift and go to state 11
-    YOUARENOW       shift and go to state 12
+    ID              shift and go to state 12
     BROADCAST       shift and go to state 13
     TRY             shift and go to state 14
     IF              shift and go to state 15
@@ -474,7 +473,7 @@ state 17
 
     NEWLINE         reduce using rule 3 (statement_list -> statement_list statement .)
     YOUARE          reduce using rule 3 (statement_list -> statement_list statement .)
-    YOUARENOW       reduce using rule 3 (statement_list -> statement_list statement .)
+    ID              reduce using rule 3 (statement_list -> statement_list statement .)
     BROADCAST       reduce using rule 3 (statement_list -> statement_list statement .)
     TRY             reduce using rule 3 (statement_list -> statement_list statement .)
     IF              reduce using rule 3 (statement_list -> statement_list statement .)
@@ -494,10 +493,29 @@ state 18
 
 state 19
 
-    (11) assignment -> YOUARENOW ID . ASSIGNTO expression
+    (11) assignment -> ID ASSIGNTO . expression
+    (28) expression -> . expression PLUS term
+    (29) expression -> . expression MINUS term
+    (30) expression -> . term
+    (31) term -> . term TIMES factor
+    (32) term -> . term DIVIDE factor
+    (33) term -> . factor
+    (34) factor -> . base POWER factor
+    (35) factor -> . base
+    (36) base -> . NUMBER
+    (37) base -> . ID
+    (38) base -> . LT_PARENT expression RT_PARENT
+    (39) base -> . MINUS base
 
-    ASSIGNTO        shift and go to state 36
+    NUMBER          shift and go to state 28
+    ID              shift and go to state 29
+    LT_PARENT       shift and go to state 30
+    MINUS           shift and go to state 25
 
+    expression                     shift and go to state 36
+    term                           shift and go to state 24
+    factor                         shift and go to state 26
+    base                           shift and go to state 27
 
 state 20
 
@@ -518,9 +536,9 @@ state 20
     (38) base -> . LT_PARENT expression RT_PARENT
     (39) base -> . MINUS base
 
+  ! shift/reduce conflict for ID resolved as shift
     NEWLINE         reduce using rule 13 (broadcast_stmt -> BROADCAST broadcast_args .)
     YOUARE          reduce using rule 13 (broadcast_stmt -> BROADCAST broadcast_args .)
-    YOUARENOW       reduce using rule 13 (broadcast_stmt -> BROADCAST broadcast_args .)
     BROADCAST       reduce using rule 13 (broadcast_stmt -> BROADCAST broadcast_args .)
     TRY             reduce using rule 13 (broadcast_stmt -> BROADCAST broadcast_args .)
     IF              reduce using rule 13 (broadcast_stmt -> BROADCAST broadcast_args .)
@@ -534,6 +552,8 @@ state 20
     ID              shift and go to state 29
     LT_PARENT       shift and go to state 30
     MINUS           shift and go to state 25
+
+  ! ID              [ reduce using rule 13 (broadcast_stmt -> BROADCAST broadcast_args .) ]
 
     broadcast_arg                  shift and go to state 37
     expression                     shift and go to state 23
@@ -552,7 +572,6 @@ state 21
     MINUS           reduce using rule 14 (broadcast_args -> broadcast_arg .)
     NEWLINE         reduce using rule 14 (broadcast_args -> broadcast_arg .)
     YOUARE          reduce using rule 14 (broadcast_args -> broadcast_arg .)
-    YOUARENOW       reduce using rule 14 (broadcast_args -> broadcast_arg .)
     BROADCAST       reduce using rule 14 (broadcast_args -> broadcast_arg .)
     TRY             reduce using rule 14 (broadcast_args -> broadcast_arg .)
     IF              reduce using rule 14 (broadcast_args -> broadcast_arg .)
@@ -574,7 +593,6 @@ state 22
     MINUS           reduce using rule 16 (broadcast_arg -> STRING .)
     NEWLINE         reduce using rule 16 (broadcast_arg -> STRING .)
     YOUARE          reduce using rule 16 (broadcast_arg -> STRING .)
-    YOUARENOW       reduce using rule 16 (broadcast_arg -> STRING .)
     BROADCAST       reduce using rule 16 (broadcast_arg -> STRING .)
     TRY             reduce using rule 16 (broadcast_arg -> STRING .)
     IF              reduce using rule 16 (broadcast_arg -> STRING .)
@@ -598,7 +616,6 @@ state 23
     LT_PARENT       reduce using rule 17 (broadcast_arg -> expression .)
     NEWLINE         reduce using rule 17 (broadcast_arg -> expression .)
     YOUARE          reduce using rule 17 (broadcast_arg -> expression .)
-    YOUARENOW       reduce using rule 17 (broadcast_arg -> expression .)
     BROADCAST       reduce using rule 17 (broadcast_arg -> expression .)
     TRY             reduce using rule 17 (broadcast_arg -> expression .)
     IF              reduce using rule 17 (broadcast_arg -> expression .)
@@ -627,7 +644,6 @@ state 24
     LT_PARENT       reduce using rule 30 (expression -> term .)
     NEWLINE         reduce using rule 30 (expression -> term .)
     YOUARE          reduce using rule 30 (expression -> term .)
-    YOUARENOW       reduce using rule 30 (expression -> term .)
     BROADCAST       reduce using rule 30 (expression -> term .)
     TRY             reduce using rule 30 (expression -> term .)
     IF              reduce using rule 30 (expression -> term .)
@@ -676,7 +692,6 @@ state 26
     LT_PARENT       reduce using rule 33 (term -> factor .)
     NEWLINE         reduce using rule 33 (term -> factor .)
     YOUARE          reduce using rule 33 (term -> factor .)
-    YOUARENOW       reduce using rule 33 (term -> factor .)
     BROADCAST       reduce using rule 33 (term -> factor .)
     TRY             reduce using rule 33 (term -> factor .)
     IF              reduce using rule 33 (term -> factor .)
@@ -710,7 +725,6 @@ state 27
     LT_PARENT       reduce using rule 35 (factor -> base .)
     NEWLINE         reduce using rule 35 (factor -> base .)
     YOUARE          reduce using rule 35 (factor -> base .)
-    YOUARENOW       reduce using rule 35 (factor -> base .)
     BROADCAST       reduce using rule 35 (factor -> base .)
     TRY             reduce using rule 35 (factor -> base .)
     IF              reduce using rule 35 (factor -> base .)
@@ -743,7 +757,6 @@ state 28
     LT_PARENT       reduce using rule 36 (base -> NUMBER .)
     NEWLINE         reduce using rule 36 (base -> NUMBER .)
     YOUARE          reduce using rule 36 (base -> NUMBER .)
-    YOUARENOW       reduce using rule 36 (base -> NUMBER .)
     BROADCAST       reduce using rule 36 (base -> NUMBER .)
     TRY             reduce using rule 36 (base -> NUMBER .)
     IF              reduce using rule 36 (base -> NUMBER .)
@@ -776,7 +789,6 @@ state 29
     LT_PARENT       reduce using rule 37 (base -> ID .)
     NEWLINE         reduce using rule 37 (base -> ID .)
     YOUARE          reduce using rule 37 (base -> ID .)
-    YOUARENOW       reduce using rule 37 (base -> ID .)
     BROADCAST       reduce using rule 37 (base -> ID .)
     TRY             reduce using rule 37 (base -> ID .)
     IF              reduce using rule 37 (base -> ID .)
@@ -832,7 +844,7 @@ state 31
     (9) statement -> . cycle_stmt
     (10) statement -> . NEWLINE
     (12) declaration -> . YOUARE ID ASSIGNTO expression
-    (11) assignment -> . YOUARENOW ID ASSIGNTO expression
+    (11) assignment -> . ID ASSIGNTO expression
     (13) broadcast_stmt -> . BROADCAST broadcast_args
     (18) try_catch -> . TRY statement_list CATCH statement_list END
     (19) if_stmt -> . IF condition statement_list END
@@ -842,7 +854,7 @@ state 31
     CATCH           shift and go to state 45
     NEWLINE         shift and go to state 10
     YOUARE          shift and go to state 11
-    YOUARENOW       shift and go to state 12
+    ID              shift and go to state 12
     BROADCAST       shift and go to state 13
     TRY             shift and go to state 14
     IF              shift and go to state 15
@@ -870,7 +882,7 @@ state 32
     (9) statement -> . cycle_stmt
     (10) statement -> . NEWLINE
     (12) declaration -> . YOUARE ID ASSIGNTO expression
-    (11) assignment -> . YOUARENOW ID ASSIGNTO expression
+    (11) assignment -> . ID ASSIGNTO expression
     (13) broadcast_stmt -> . BROADCAST broadcast_args
     (18) try_catch -> . TRY statement_list CATCH statement_list END
     (19) if_stmt -> . IF condition statement_list END
@@ -879,7 +891,7 @@ state 32
 
     NEWLINE         shift and go to state 10
     YOUARE          shift and go to state 11
-    YOUARENOW       shift and go to state 12
+    ID              shift and go to state 12
     BROADCAST       shift and go to state 13
     TRY             shift and go to state 14
     IF              shift and go to state 15
@@ -928,7 +940,7 @@ state 34
     (9) statement -> . cycle_stmt
     (10) statement -> . NEWLINE
     (12) declaration -> . YOUARE ID ASSIGNTO expression
-    (11) assignment -> . YOUARENOW ID ASSIGNTO expression
+    (11) assignment -> . ID ASSIGNTO expression
     (13) broadcast_stmt -> . BROADCAST broadcast_args
     (18) try_catch -> . TRY statement_list CATCH statement_list END
     (19) if_stmt -> . IF condition statement_list END
@@ -937,7 +949,7 @@ state 34
 
     NEWLINE         shift and go to state 10
     YOUARE          shift and go to state 11
-    YOUARENOW       shift and go to state 12
+    ID              shift and go to state 12
     BROADCAST       shift and go to state 13
     TRY             shift and go to state 14
     IF              shift and go to state 15
@@ -980,29 +992,24 @@ state 35
 
 state 36
 
-    (11) assignment -> YOUARENOW ID ASSIGNTO . expression
-    (28) expression -> . expression PLUS term
-    (29) expression -> . expression MINUS term
-    (30) expression -> . term
-    (31) term -> . term TIMES factor
-    (32) term -> . term DIVIDE factor
-    (33) term -> . factor
-    (34) factor -> . base POWER factor
-    (35) factor -> . base
-    (36) base -> . NUMBER
-    (37) base -> . ID
-    (38) base -> . LT_PARENT expression RT_PARENT
-    (39) base -> . MINUS base
+    (11) assignment -> ID ASSIGNTO expression .
+    (28) expression -> expression . PLUS term
+    (29) expression -> expression . MINUS term
 
-    NUMBER          shift and go to state 28
-    ID              shift and go to state 29
-    LT_PARENT       shift and go to state 30
-    MINUS           shift and go to state 25
+    NEWLINE         reduce using rule 11 (assignment -> ID ASSIGNTO expression .)
+    YOUARE          reduce using rule 11 (assignment -> ID ASSIGNTO expression .)
+    ID              reduce using rule 11 (assignment -> ID ASSIGNTO expression .)
+    BROADCAST       reduce using rule 11 (assignment -> ID ASSIGNTO expression .)
+    TRY             reduce using rule 11 (assignment -> ID ASSIGNTO expression .)
+    IF              reduce using rule 11 (assignment -> ID ASSIGNTO expression .)
+    CYCLE           reduce using rule 11 (assignment -> ID ASSIGNTO expression .)
+    $end            reduce using rule 11 (assignment -> ID ASSIGNTO expression .)
+    CATCH           reduce using rule 11 (assignment -> ID ASSIGNTO expression .)
+    END             reduce using rule 11 (assignment -> ID ASSIGNTO expression .)
+    FALLBACK        reduce using rule 11 (assignment -> ID ASSIGNTO expression .)
+    PLUS            shift and go to state 38
+    MINUS           shift and go to state 39
 
-    expression                     shift and go to state 55
-    term                           shift and go to state 24
-    factor                         shift and go to state 26
-    base                           shift and go to state 27
 
 state 37
 
@@ -1015,7 +1022,6 @@ state 37
     MINUS           reduce using rule 15 (broadcast_args -> broadcast_args broadcast_arg .)
     NEWLINE         reduce using rule 15 (broadcast_args -> broadcast_args broadcast_arg .)
     YOUARE          reduce using rule 15 (broadcast_args -> broadcast_args broadcast_arg .)
-    YOUARENOW       reduce using rule 15 (broadcast_args -> broadcast_args broadcast_arg .)
     BROADCAST       reduce using rule 15 (broadcast_args -> broadcast_args broadcast_arg .)
     TRY             reduce using rule 15 (broadcast_args -> broadcast_args broadcast_arg .)
     IF              reduce using rule 15 (broadcast_args -> broadcast_args broadcast_arg .)
@@ -1044,7 +1050,7 @@ state 38
     LT_PARENT       shift and go to state 30
     MINUS           shift and go to state 25
 
-    term                           shift and go to state 56
+    term                           shift and go to state 55
     factor                         shift and go to state 26
     base                           shift and go to state 27
 
@@ -1066,7 +1072,7 @@ state 39
     LT_PARENT       shift and go to state 30
     MINUS           shift and go to state 25
 
-    term                           shift and go to state 57
+    term                           shift and go to state 56
     factor                         shift and go to state 26
     base                           shift and go to state 27
 
@@ -1085,7 +1091,7 @@ state 40
     LT_PARENT       shift and go to state 30
     MINUS           shift and go to state 25
 
-    factor                         shift and go to state 58
+    factor                         shift and go to state 57
     base                           shift and go to state 27
 
 state 41
@@ -1103,7 +1109,7 @@ state 41
     LT_PARENT       shift and go to state 30
     MINUS           shift and go to state 25
 
-    factor                         shift and go to state 59
+    factor                         shift and go to state 58
     base                           shift and go to state 27
 
 state 42
@@ -1121,7 +1127,6 @@ state 42
     LT_PARENT       reduce using rule 39 (base -> MINUS base .)
     NEWLINE         reduce using rule 39 (base -> MINUS base .)
     YOUARE          reduce using rule 39 (base -> MINUS base .)
-    YOUARENOW       reduce using rule 39 (base -> MINUS base .)
     BROADCAST       reduce using rule 39 (base -> MINUS base .)
     TRY             reduce using rule 39 (base -> MINUS base .)
     IF              reduce using rule 39 (base -> MINUS base .)
@@ -1155,7 +1160,7 @@ state 43
     MINUS           shift and go to state 25
 
     base                           shift and go to state 27
-    factor                         shift and go to state 60
+    factor                         shift and go to state 59
 
 state 44
 
@@ -1163,7 +1168,7 @@ state 44
     (28) expression -> expression . PLUS term
     (29) expression -> expression . MINUS term
 
-    RT_PARENT       shift and go to state 61
+    RT_PARENT       shift and go to state 60
     PLUS            shift and go to state 38
     MINUS           shift and go to state 39
 
@@ -1181,7 +1186,7 @@ state 45
     (9) statement -> . cycle_stmt
     (10) statement -> . NEWLINE
     (12) declaration -> . YOUARE ID ASSIGNTO expression
-    (11) assignment -> . YOUARENOW ID ASSIGNTO expression
+    (11) assignment -> . ID ASSIGNTO expression
     (13) broadcast_stmt -> . BROADCAST broadcast_args
     (18) try_catch -> . TRY statement_list CATCH statement_list END
     (19) if_stmt -> . IF condition statement_list END
@@ -1190,13 +1195,13 @@ state 45
 
     NEWLINE         shift and go to state 10
     YOUARE          shift and go to state 11
-    YOUARENOW       shift and go to state 12
+    ID              shift and go to state 12
     BROADCAST       shift and go to state 13
     TRY             shift and go to state 14
     IF              shift and go to state 15
     CYCLE           shift and go to state 16
 
-    statement_list                 shift and go to state 62
+    statement_list                 shift and go to state 61
     statement                      shift and go to state 3
     declaration                    shift and go to state 4
     assignment                     shift and go to state 5
@@ -1218,18 +1223,18 @@ state 46
     (9) statement -> . cycle_stmt
     (10) statement -> . NEWLINE
     (12) declaration -> . YOUARE ID ASSIGNTO expression
-    (11) assignment -> . YOUARENOW ID ASSIGNTO expression
+    (11) assignment -> . ID ASSIGNTO expression
     (13) broadcast_stmt -> . BROADCAST broadcast_args
     (18) try_catch -> . TRY statement_list CATCH statement_list END
     (19) if_stmt -> . IF condition statement_list END
     (20) if_stmt -> . IF condition statement_list FALLBACK statement_list END
     (21) cycle_stmt -> . CYCLE condition statement_list END
 
-    END             shift and go to state 63
-    FALLBACK        shift and go to state 64
+    END             shift and go to state 62
+    FALLBACK        shift and go to state 63
     NEWLINE         shift and go to state 10
     YOUARE          shift and go to state 11
-    YOUARENOW       shift and go to state 12
+    ID              shift and go to state 12
     BROADCAST       shift and go to state 13
     TRY             shift and go to state 14
     IF              shift and go to state 15
@@ -1264,7 +1269,7 @@ state 47
     LT_PARENT       shift and go to state 30
     MINUS           shift and go to state 25
 
-    expression                     shift and go to state 65
+    expression                     shift and go to state 64
     term                           shift and go to state 24
     factor                         shift and go to state 26
     base                           shift and go to state 27
@@ -1290,7 +1295,7 @@ state 48
     LT_PARENT       shift and go to state 30
     MINUS           shift and go to state 25
 
-    expression                     shift and go to state 66
+    expression                     shift and go to state 65
     term                           shift and go to state 24
     factor                         shift and go to state 26
     base                           shift and go to state 27
@@ -1316,7 +1321,7 @@ state 49
     LT_PARENT       shift and go to state 30
     MINUS           shift and go to state 25
 
-    expression                     shift and go to state 67
+    expression                     shift and go to state 66
     term                           shift and go to state 24
     factor                         shift and go to state 26
     base                           shift and go to state 27
@@ -1342,7 +1347,7 @@ state 50
     LT_PARENT       shift and go to state 30
     MINUS           shift and go to state 25
 
-    expression                     shift and go to state 68
+    expression                     shift and go to state 67
     term                           shift and go to state 24
     factor                         shift and go to state 26
     base                           shift and go to state 27
@@ -1368,7 +1373,7 @@ state 51
     LT_PARENT       shift and go to state 30
     MINUS           shift and go to state 25
 
-    expression                     shift and go to state 69
+    expression                     shift and go to state 68
     term                           shift and go to state 24
     factor                         shift and go to state 26
     base                           shift and go to state 27
@@ -1394,7 +1399,7 @@ state 52
     LT_PARENT       shift and go to state 30
     MINUS           shift and go to state 25
 
-    expression                     shift and go to state 70
+    expression                     shift and go to state 69
     term                           shift and go to state 24
     factor                         shift and go to state 26
     base                           shift and go to state 27
@@ -1411,17 +1416,17 @@ state 53
     (9) statement -> . cycle_stmt
     (10) statement -> . NEWLINE
     (12) declaration -> . YOUARE ID ASSIGNTO expression
-    (11) assignment -> . YOUARENOW ID ASSIGNTO expression
+    (11) assignment -> . ID ASSIGNTO expression
     (13) broadcast_stmt -> . BROADCAST broadcast_args
     (18) try_catch -> . TRY statement_list CATCH statement_list END
     (19) if_stmt -> . IF condition statement_list END
     (20) if_stmt -> . IF condition statement_list FALLBACK statement_list END
     (21) cycle_stmt -> . CYCLE condition statement_list END
 
-    END             shift and go to state 71
+    END             shift and go to state 70
     NEWLINE         shift and go to state 10
     YOUARE          shift and go to state 11
-    YOUARENOW       shift and go to state 12
+    ID              shift and go to state 12
     BROADCAST       shift and go to state 13
     TRY             shift and go to state 14
     IF              shift and go to state 15
@@ -1443,7 +1448,7 @@ state 54
 
     NEWLINE         reduce using rule 12 (declaration -> YOUARE ID ASSIGNTO expression .)
     YOUARE          reduce using rule 12 (declaration -> YOUARE ID ASSIGNTO expression .)
-    YOUARENOW       reduce using rule 12 (declaration -> YOUARE ID ASSIGNTO expression .)
+    ID              reduce using rule 12 (declaration -> YOUARE ID ASSIGNTO expression .)
     BROADCAST       reduce using rule 12 (declaration -> YOUARE ID ASSIGNTO expression .)
     TRY             reduce using rule 12 (declaration -> YOUARE ID ASSIGNTO expression .)
     IF              reduce using rule 12 (declaration -> YOUARE ID ASSIGNTO expression .)
@@ -1458,27 +1463,6 @@ state 54
 
 state 55
 
-    (11) assignment -> YOUARENOW ID ASSIGNTO expression .
-    (28) expression -> expression . PLUS term
-    (29) expression -> expression . MINUS term
-
-    NEWLINE         reduce using rule 11 (assignment -> YOUARENOW ID ASSIGNTO expression .)
-    YOUARE          reduce using rule 11 (assignment -> YOUARENOW ID ASSIGNTO expression .)
-    YOUARENOW       reduce using rule 11 (assignment -> YOUARENOW ID ASSIGNTO expression .)
-    BROADCAST       reduce using rule 11 (assignment -> YOUARENOW ID ASSIGNTO expression .)
-    TRY             reduce using rule 11 (assignment -> YOUARENOW ID ASSIGNTO expression .)
-    IF              reduce using rule 11 (assignment -> YOUARENOW ID ASSIGNTO expression .)
-    CYCLE           reduce using rule 11 (assignment -> YOUARENOW ID ASSIGNTO expression .)
-    $end            reduce using rule 11 (assignment -> YOUARENOW ID ASSIGNTO expression .)
-    CATCH           reduce using rule 11 (assignment -> YOUARENOW ID ASSIGNTO expression .)
-    END             reduce using rule 11 (assignment -> YOUARENOW ID ASSIGNTO expression .)
-    FALLBACK        reduce using rule 11 (assignment -> YOUARENOW ID ASSIGNTO expression .)
-    PLUS            shift and go to state 38
-    MINUS           shift and go to state 39
-
-
-state 56
-
     (28) expression -> expression PLUS term .
     (31) term -> term . TIMES factor
     (32) term -> term . DIVIDE factor
@@ -1491,7 +1475,6 @@ state 56
     LT_PARENT       reduce using rule 28 (expression -> expression PLUS term .)
     NEWLINE         reduce using rule 28 (expression -> expression PLUS term .)
     YOUARE          reduce using rule 28 (expression -> expression PLUS term .)
-    YOUARENOW       reduce using rule 28 (expression -> expression PLUS term .)
     BROADCAST       reduce using rule 28 (expression -> expression PLUS term .)
     TRY             reduce using rule 28 (expression -> expression PLUS term .)
     IF              reduce using rule 28 (expression -> expression PLUS term .)
@@ -1511,7 +1494,7 @@ state 56
     DIVIDE          shift and go to state 41
 
 
-state 57
+state 56
 
     (29) expression -> expression MINUS term .
     (31) term -> term . TIMES factor
@@ -1525,7 +1508,6 @@ state 57
     LT_PARENT       reduce using rule 29 (expression -> expression MINUS term .)
     NEWLINE         reduce using rule 29 (expression -> expression MINUS term .)
     YOUARE          reduce using rule 29 (expression -> expression MINUS term .)
-    YOUARENOW       reduce using rule 29 (expression -> expression MINUS term .)
     BROADCAST       reduce using rule 29 (expression -> expression MINUS term .)
     TRY             reduce using rule 29 (expression -> expression MINUS term .)
     IF              reduce using rule 29 (expression -> expression MINUS term .)
@@ -1545,7 +1527,7 @@ state 57
     DIVIDE          shift and go to state 41
 
 
-state 58
+state 57
 
     (31) term -> term TIMES factor .
 
@@ -1559,7 +1541,6 @@ state 58
     LT_PARENT       reduce using rule 31 (term -> term TIMES factor .)
     NEWLINE         reduce using rule 31 (term -> term TIMES factor .)
     YOUARE          reduce using rule 31 (term -> term TIMES factor .)
-    YOUARENOW       reduce using rule 31 (term -> term TIMES factor .)
     BROADCAST       reduce using rule 31 (term -> term TIMES factor .)
     TRY             reduce using rule 31 (term -> term TIMES factor .)
     IF              reduce using rule 31 (term -> term TIMES factor .)
@@ -1577,7 +1558,7 @@ state 58
     RT_PARENT       reduce using rule 31 (term -> term TIMES factor .)
 
 
-state 59
+state 58
 
     (32) term -> term DIVIDE factor .
 
@@ -1591,7 +1572,6 @@ state 59
     LT_PARENT       reduce using rule 32 (term -> term DIVIDE factor .)
     NEWLINE         reduce using rule 32 (term -> term DIVIDE factor .)
     YOUARE          reduce using rule 32 (term -> term DIVIDE factor .)
-    YOUARENOW       reduce using rule 32 (term -> term DIVIDE factor .)
     BROADCAST       reduce using rule 32 (term -> term DIVIDE factor .)
     TRY             reduce using rule 32 (term -> term DIVIDE factor .)
     IF              reduce using rule 32 (term -> term DIVIDE factor .)
@@ -1609,7 +1589,7 @@ state 59
     RT_PARENT       reduce using rule 32 (term -> term DIVIDE factor .)
 
 
-state 60
+state 59
 
     (34) factor -> base POWER factor .
 
@@ -1623,7 +1603,6 @@ state 60
     LT_PARENT       reduce using rule 34 (factor -> base POWER factor .)
     NEWLINE         reduce using rule 34 (factor -> base POWER factor .)
     YOUARE          reduce using rule 34 (factor -> base POWER factor .)
-    YOUARENOW       reduce using rule 34 (factor -> base POWER factor .)
     BROADCAST       reduce using rule 34 (factor -> base POWER factor .)
     TRY             reduce using rule 34 (factor -> base POWER factor .)
     IF              reduce using rule 34 (factor -> base POWER factor .)
@@ -1641,7 +1620,7 @@ state 60
     RT_PARENT       reduce using rule 34 (factor -> base POWER factor .)
 
 
-state 61
+state 60
 
     (38) base -> LT_PARENT expression RT_PARENT .
 
@@ -1656,7 +1635,6 @@ state 61
     LT_PARENT       reduce using rule 38 (base -> LT_PARENT expression RT_PARENT .)
     NEWLINE         reduce using rule 38 (base -> LT_PARENT expression RT_PARENT .)
     YOUARE          reduce using rule 38 (base -> LT_PARENT expression RT_PARENT .)
-    YOUARENOW       reduce using rule 38 (base -> LT_PARENT expression RT_PARENT .)
     BROADCAST       reduce using rule 38 (base -> LT_PARENT expression RT_PARENT .)
     TRY             reduce using rule 38 (base -> LT_PARENT expression RT_PARENT .)
     IF              reduce using rule 38 (base -> LT_PARENT expression RT_PARENT .)
@@ -1674,7 +1652,7 @@ state 61
     RT_PARENT       reduce using rule 38 (base -> LT_PARENT expression RT_PARENT .)
 
 
-state 62
+state 61
 
     (18) try_catch -> TRY statement_list CATCH statement_list . END
     (3) statement_list -> statement_list . statement
@@ -1686,17 +1664,17 @@ state 62
     (9) statement -> . cycle_stmt
     (10) statement -> . NEWLINE
     (12) declaration -> . YOUARE ID ASSIGNTO expression
-    (11) assignment -> . YOUARENOW ID ASSIGNTO expression
+    (11) assignment -> . ID ASSIGNTO expression
     (13) broadcast_stmt -> . BROADCAST broadcast_args
     (18) try_catch -> . TRY statement_list CATCH statement_list END
     (19) if_stmt -> . IF condition statement_list END
     (20) if_stmt -> . IF condition statement_list FALLBACK statement_list END
     (21) cycle_stmt -> . CYCLE condition statement_list END
 
-    END             shift and go to state 72
+    END             shift and go to state 71
     NEWLINE         shift and go to state 10
     YOUARE          shift and go to state 11
-    YOUARENOW       shift and go to state 12
+    ID              shift and go to state 12
     BROADCAST       shift and go to state 13
     TRY             shift and go to state 14
     IF              shift and go to state 15
@@ -1710,13 +1688,13 @@ state 62
     if_stmt                        shift and go to state 8
     cycle_stmt                     shift and go to state 9
 
-state 63
+state 62
 
     (19) if_stmt -> IF condition statement_list END .
 
     NEWLINE         reduce using rule 19 (if_stmt -> IF condition statement_list END .)
     YOUARE          reduce using rule 19 (if_stmt -> IF condition statement_list END .)
-    YOUARENOW       reduce using rule 19 (if_stmt -> IF condition statement_list END .)
+    ID              reduce using rule 19 (if_stmt -> IF condition statement_list END .)
     BROADCAST       reduce using rule 19 (if_stmt -> IF condition statement_list END .)
     TRY             reduce using rule 19 (if_stmt -> IF condition statement_list END .)
     IF              reduce using rule 19 (if_stmt -> IF condition statement_list END .)
@@ -1727,7 +1705,7 @@ state 63
     FALLBACK        reduce using rule 19 (if_stmt -> IF condition statement_list END .)
 
 
-state 64
+state 63
 
     (20) if_stmt -> IF condition statement_list FALLBACK . statement_list END
     (2) statement_list -> . statement
@@ -1740,7 +1718,7 @@ state 64
     (9) statement -> . cycle_stmt
     (10) statement -> . NEWLINE
     (12) declaration -> . YOUARE ID ASSIGNTO expression
-    (11) assignment -> . YOUARENOW ID ASSIGNTO expression
+    (11) assignment -> . ID ASSIGNTO expression
     (13) broadcast_stmt -> . BROADCAST broadcast_args
     (18) try_catch -> . TRY statement_list CATCH statement_list END
     (19) if_stmt -> . IF condition statement_list END
@@ -1749,13 +1727,13 @@ state 64
 
     NEWLINE         shift and go to state 10
     YOUARE          shift and go to state 11
-    YOUARENOW       shift and go to state 12
+    ID              shift and go to state 12
     BROADCAST       shift and go to state 13
     TRY             shift and go to state 14
     IF              shift and go to state 15
     CYCLE           shift and go to state 16
 
-    statement_list                 shift and go to state 73
+    statement_list                 shift and go to state 72
     statement                      shift and go to state 3
     declaration                    shift and go to state 4
     assignment                     shift and go to state 5
@@ -1764,7 +1742,7 @@ state 64
     if_stmt                        shift and go to state 8
     cycle_stmt                     shift and go to state 9
 
-state 65
+state 64
 
     (22) condition -> expression EQT expression .
     (28) expression -> expression . PLUS term
@@ -1772,7 +1750,7 @@ state 65
 
     NEWLINE         reduce using rule 22 (condition -> expression EQT expression .)
     YOUARE          reduce using rule 22 (condition -> expression EQT expression .)
-    YOUARENOW       reduce using rule 22 (condition -> expression EQT expression .)
+    ID              reduce using rule 22 (condition -> expression EQT expression .)
     BROADCAST       reduce using rule 22 (condition -> expression EQT expression .)
     TRY             reduce using rule 22 (condition -> expression EQT expression .)
     IF              reduce using rule 22 (condition -> expression EQT expression .)
@@ -1781,7 +1759,7 @@ state 65
     MINUS           shift and go to state 39
 
 
-state 66
+state 65
 
     (23) condition -> expression NEQT expression .
     (28) expression -> expression . PLUS term
@@ -1789,7 +1767,7 @@ state 66
 
     NEWLINE         reduce using rule 23 (condition -> expression NEQT expression .)
     YOUARE          reduce using rule 23 (condition -> expression NEQT expression .)
-    YOUARENOW       reduce using rule 23 (condition -> expression NEQT expression .)
+    ID              reduce using rule 23 (condition -> expression NEQT expression .)
     BROADCAST       reduce using rule 23 (condition -> expression NEQT expression .)
     TRY             reduce using rule 23 (condition -> expression NEQT expression .)
     IF              reduce using rule 23 (condition -> expression NEQT expression .)
@@ -1798,7 +1776,7 @@ state 66
     MINUS           shift and go to state 39
 
 
-state 67
+state 66
 
     (24) condition -> expression LT expression .
     (28) expression -> expression . PLUS term
@@ -1806,7 +1784,7 @@ state 67
 
     NEWLINE         reduce using rule 24 (condition -> expression LT expression .)
     YOUARE          reduce using rule 24 (condition -> expression LT expression .)
-    YOUARENOW       reduce using rule 24 (condition -> expression LT expression .)
+    ID              reduce using rule 24 (condition -> expression LT expression .)
     BROADCAST       reduce using rule 24 (condition -> expression LT expression .)
     TRY             reduce using rule 24 (condition -> expression LT expression .)
     IF              reduce using rule 24 (condition -> expression LT expression .)
@@ -1815,7 +1793,7 @@ state 67
     MINUS           shift and go to state 39
 
 
-state 68
+state 67
 
     (25) condition -> expression GT expression .
     (28) expression -> expression . PLUS term
@@ -1823,7 +1801,7 @@ state 68
 
     NEWLINE         reduce using rule 25 (condition -> expression GT expression .)
     YOUARE          reduce using rule 25 (condition -> expression GT expression .)
-    YOUARENOW       reduce using rule 25 (condition -> expression GT expression .)
+    ID              reduce using rule 25 (condition -> expression GT expression .)
     BROADCAST       reduce using rule 25 (condition -> expression GT expression .)
     TRY             reduce using rule 25 (condition -> expression GT expression .)
     IF              reduce using rule 25 (condition -> expression GT expression .)
@@ -1832,7 +1810,7 @@ state 68
     MINUS           shift and go to state 39
 
 
-state 69
+state 68
 
     (26) condition -> expression LTE expression .
     (28) expression -> expression . PLUS term
@@ -1840,7 +1818,7 @@ state 69
 
     NEWLINE         reduce using rule 26 (condition -> expression LTE expression .)
     YOUARE          reduce using rule 26 (condition -> expression LTE expression .)
-    YOUARENOW       reduce using rule 26 (condition -> expression LTE expression .)
+    ID              reduce using rule 26 (condition -> expression LTE expression .)
     BROADCAST       reduce using rule 26 (condition -> expression LTE expression .)
     TRY             reduce using rule 26 (condition -> expression LTE expression .)
     IF              reduce using rule 26 (condition -> expression LTE expression .)
@@ -1849,7 +1827,7 @@ state 69
     MINUS           shift and go to state 39
 
 
-state 70
+state 69
 
     (27) condition -> expression GTE expression .
     (28) expression -> expression . PLUS term
@@ -1857,7 +1835,7 @@ state 70
 
     NEWLINE         reduce using rule 27 (condition -> expression GTE expression .)
     YOUARE          reduce using rule 27 (condition -> expression GTE expression .)
-    YOUARENOW       reduce using rule 27 (condition -> expression GTE expression .)
+    ID              reduce using rule 27 (condition -> expression GTE expression .)
     BROADCAST       reduce using rule 27 (condition -> expression GTE expression .)
     TRY             reduce using rule 27 (condition -> expression GTE expression .)
     IF              reduce using rule 27 (condition -> expression GTE expression .)
@@ -1866,13 +1844,13 @@ state 70
     MINUS           shift and go to state 39
 
 
-state 71
+state 70
 
     (21) cycle_stmt -> CYCLE condition statement_list END .
 
     NEWLINE         reduce using rule 21 (cycle_stmt -> CYCLE condition statement_list END .)
     YOUARE          reduce using rule 21 (cycle_stmt -> CYCLE condition statement_list END .)
-    YOUARENOW       reduce using rule 21 (cycle_stmt -> CYCLE condition statement_list END .)
+    ID              reduce using rule 21 (cycle_stmt -> CYCLE condition statement_list END .)
     BROADCAST       reduce using rule 21 (cycle_stmt -> CYCLE condition statement_list END .)
     TRY             reduce using rule 21 (cycle_stmt -> CYCLE condition statement_list END .)
     IF              reduce using rule 21 (cycle_stmt -> CYCLE condition statement_list END .)
@@ -1883,13 +1861,13 @@ state 71
     FALLBACK        reduce using rule 21 (cycle_stmt -> CYCLE condition statement_list END .)
 
 
-state 72
+state 71
 
     (18) try_catch -> TRY statement_list CATCH statement_list END .
 
     NEWLINE         reduce using rule 18 (try_catch -> TRY statement_list CATCH statement_list END .)
     YOUARE          reduce using rule 18 (try_catch -> TRY statement_list CATCH statement_list END .)
-    YOUARENOW       reduce using rule 18 (try_catch -> TRY statement_list CATCH statement_list END .)
+    ID              reduce using rule 18 (try_catch -> TRY statement_list CATCH statement_list END .)
     BROADCAST       reduce using rule 18 (try_catch -> TRY statement_list CATCH statement_list END .)
     TRY             reduce using rule 18 (try_catch -> TRY statement_list CATCH statement_list END .)
     IF              reduce using rule 18 (try_catch -> TRY statement_list CATCH statement_list END .)
@@ -1900,7 +1878,7 @@ state 72
     FALLBACK        reduce using rule 18 (try_catch -> TRY statement_list CATCH statement_list END .)
 
 
-state 73
+state 72
 
     (20) if_stmt -> IF condition statement_list FALLBACK statement_list . END
     (3) statement_list -> statement_list . statement
@@ -1912,17 +1890,17 @@ state 73
     (9) statement -> . cycle_stmt
     (10) statement -> . NEWLINE
     (12) declaration -> . YOUARE ID ASSIGNTO expression
-    (11) assignment -> . YOUARENOW ID ASSIGNTO expression
+    (11) assignment -> . ID ASSIGNTO expression
     (13) broadcast_stmt -> . BROADCAST broadcast_args
     (18) try_catch -> . TRY statement_list CATCH statement_list END
     (19) if_stmt -> . IF condition statement_list END
     (20) if_stmt -> . IF condition statement_list FALLBACK statement_list END
     (21) cycle_stmt -> . CYCLE condition statement_list END
 
-    END             shift and go to state 74
+    END             shift and go to state 73
     NEWLINE         shift and go to state 10
     YOUARE          shift and go to state 11
-    YOUARENOW       shift and go to state 12
+    ID              shift and go to state 12
     BROADCAST       shift and go to state 13
     TRY             shift and go to state 14
     IF              shift and go to state 15
@@ -1936,13 +1914,13 @@ state 73
     if_stmt                        shift and go to state 8
     cycle_stmt                     shift and go to state 9
 
-state 74
+state 73
 
     (20) if_stmt -> IF condition statement_list FALLBACK statement_list END .
 
     NEWLINE         reduce using rule 20 (if_stmt -> IF condition statement_list FALLBACK statement_list END .)
     YOUARE          reduce using rule 20 (if_stmt -> IF condition statement_list FALLBACK statement_list END .)
-    YOUARENOW       reduce using rule 20 (if_stmt -> IF condition statement_list FALLBACK statement_list END .)
+    ID              reduce using rule 20 (if_stmt -> IF condition statement_list FALLBACK statement_list END .)
     BROADCAST       reduce using rule 20 (if_stmt -> IF condition statement_list FALLBACK statement_list END .)
     TRY             reduce using rule 20 (if_stmt -> IF condition statement_list FALLBACK statement_list END .)
     IF              reduce using rule 20 (if_stmt -> IF condition statement_list FALLBACK statement_list END .)
@@ -1955,4 +1933,5 @@ state 74
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
+WARNING: shift/reduce conflict for ID in state 20 resolved as shift
 WARNING: shift/reduce conflict for MINUS in state 23 resolved as shift
