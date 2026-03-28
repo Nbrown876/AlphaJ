@@ -242,12 +242,25 @@ class Interpreter:
                     return l / r
                 if op == '^': return l ** r
 
+
+            #String Node Handler
+            elif node_type == "string":
+                s = node[1]
+                if s.startswith('"') and s.endswith('"'):
+                    s = s[1:-1]
+                return s    
+
+            # Comments - do nothing
+            elif node_type == "notes":
+                return None
+
             # Numeric Negation
             # Alpha J mapping: `-5`
             elif node_type == "unary_minus":
                 _, expr = node
                 return -self.evaluate(expr)
-                
+
+        
         # Hard system fault if an unexpected structural identifier attempts parsing
         raise InterpreterError(f"Interpreter Error: Unrecognized AST node {node}")
 
@@ -289,8 +302,8 @@ end
 youare c = 0
 cycle c < 11
     broadcast "Cycle Iteration: " c
-    youarenow x = x + 1
-    youarenow c = c + 1
+    x = x + 1
+    c = c + 1
 end
 
 broadcast "x is now: " x
