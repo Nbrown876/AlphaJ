@@ -89,7 +89,11 @@ class Interpreter:
             
         # Base case: Node is a raw string identifier; retrieve its resolved value from the environment
         if isinstance(node, str):
-            return self.environment.get(node)
+            # Check if it's a string literal (has quotes)
+            if node.startswith('"') and node.endswith('"'):
+                return node[1:-1]  # strip quotes and return the string value
+            return self.environment.get(node)  # otherwise it's a variable
+
 
         # Standard statement blocks represent consecutive AST structures via lists
         if isinstance(node, list):

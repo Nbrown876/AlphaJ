@@ -87,6 +87,8 @@ class SemanticAnalyzer:
             return "number"
 
         if isinstance(node, str):
+            if node.startswith('"') and node.endswith('"'):
+                return "string"
             symbol = self.lookup(node)
             if symbol is None:
                 self.errors.append(
@@ -180,7 +182,7 @@ class SemanticAnalyzer:
         if expr_type == "error":
             return "error"
 
-        if symbol.var_type != expr_type:
+        if symbol.var_type != expr_type and expr_type not in ("error", None):
             self.errors.append(
                 f"Semantic Error: Type mismatch in assignment to variable '{name}'."
             )

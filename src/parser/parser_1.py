@@ -46,12 +46,14 @@ def p_newline(p):
     p[0] = None
 
 def p_assignment(p):
-    '''assignment : ID ASSIGNTO expression'''
+    '''assignment : ID ASSIGNTO expression
+                  | ID ASSIGNTO STRING'''
     p[0] = ("assign", p[1], p[3])
 
 
 def p_declaration(p):
-    '''declaration : YOUARE ID ASSIGNTO expression'''
+    '''declaration : YOUARE ID ASSIGNTO expression
+                   | YOUARE ID ASSIGNTO STRING'''
     p[0] = ("declare", p[2], p[4])
 
 def p_broadcast_stmt(p):
