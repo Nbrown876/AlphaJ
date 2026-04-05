@@ -60,9 +60,8 @@ t_RT_PARENT  = r'[)]'
 #Our Complex Token Rules
 
 def t_NOTES(t):
-    r'@@([\s\S]*?@@|[^\n]*)'
-    t.lexer.lineno += t.value.count('\n')  # Track newlines inside block comments
-    pass # Ignore comments completely
+    r'@@[^\n]*'
+    return t
 
 def t_STRING(t):
     r'\"[^\"]*\"'

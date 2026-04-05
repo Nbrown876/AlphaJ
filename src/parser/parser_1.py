@@ -1,6 +1,6 @@
 # Alpha J Language - Parser (Syntax Analysis)
 # Built with PLY (Python Lex-Yacc)
-# Language: Alpha J/MiniCalc++
+# Language: Alpha J
 # Course: CIT4004 - Anaylsis of Programming Languages
 # University of Technology, Jamaica
 
@@ -42,7 +42,8 @@ def p_statement(p):
 
 # ignore empty lines
 def p_newline(p):
-    '''statement : NEWLINE'''
+    '''statement : NEWLINE
+                 | NOTES'''
     p[0] = None
 
 def p_assignment(p):
