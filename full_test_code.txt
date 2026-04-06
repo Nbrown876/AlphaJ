@@ -1,0 +1,73 @@
+@@ Alpha J Full Grammar Test
+
+@@ Declarations + expressions
+youare a = 10
+youare b = 5
+youare c = a + b * 2
+youare d = (a + b) * 2
+youare e = a ^ 2
+youare f = -a
+
+@@ Broadcast with multiple arguments
+broadcast "Values: " a b c d e f
+
+@@ All relational operators
+if a > b
+    broadcast "a > b"
+end
+
+if a < b
+    broadcast "a < b"
+fallback
+    broadcast "a >= b"
+end
+
+if a == b
+    broadcast "a == b"
+fallback
+    broadcast "a != b"
+end
+
+if a != b
+    broadcast "a != b"
+end
+
+if a >= b
+    broadcast "a >= b"
+end
+
+if a <= b
+    broadcast "a <= b"
+fallback
+    broadcast "a > b"
+end
+
+@@ Cycle loop test
+youare i = 0
+cycle i < 3
+    broadcast "Loop i = " i
+    youare i = i + 1
+end
+
+@@ Nested structures
+if a > b
+    cycle i < 5
+        broadcast "Nested loop i = " i
+        youare i = i + 1
+    end
+fallback
+    broadcast "No loop executed"
+end
+
+@@ Try-Catch test
+try
+    broadcast "Inside try block"
+    youare x = a / b
+    broadcast "Division result: " x
+catch
+    broadcast "Error occurred in try block"
+end
+
+@@ Complex expression test
+youare result = (a + b) * (c - d) / e ^ 2
+broadcast "Final result: " result

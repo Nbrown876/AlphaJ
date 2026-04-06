@@ -197,10 +197,10 @@ class Interpreter:
                 
                 # Resolving boolean parameters each execution loop 
                 while self.evaluate(condition):
-                    previous_env = self.environment
-                    self.environment = Environment(previous_env)
+                    #previous_env = self.environment
+                    #self.environment = Environment(previous_env)
                     self.evaluate(body)
-                    self.environment = previous_env
+                   # self.environment = previous_env
                 return None
 
             # ---------------------------

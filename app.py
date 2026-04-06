@@ -15,6 +15,8 @@ from src.lexer import lexer
 from src.semantic import SemanticAnalyzer
 from src.interpreter import Interpreter
 
+import ply.lex as lex
+
 app = Flask(__name__)
 
 # ============================================
@@ -437,6 +439,9 @@ end"></textarea>
   <div class="output-panel">
     <div class="tabs">
       <div class="tab active" onclick="switchTab('output')">Output</div>
+      <!-- JS TOKEN N TREE -->
+      <div class="tab" onclick="switchTab('tokens')">Tokens</div>
+      <div class="tab" onclick="switchTab('tree')">Parse Tree</div>
       <div class="tab" onclick="switchTab('llm')">LLM Analysis</div>
       <div class="tab" onclick="switchTab('help')">Help</div>
     </div>
@@ -445,6 +450,20 @@ end"></textarea>
     <div class="tab-content active" id="tab-output">
       <div id="output-area">
         <p class="placeholder-text">▶ Run your Alpha J program to see output here.</p>
+      </div>
+    </div>
+
+    <!-- Tokens Tab -->
+    <div class="tab-content" id="tab-tokens">
+      <div class="output-box" id="tokens-area">
+        <p class="placeholder-text">Tokens will appear here.</p>
+      </div>
+    </div>
+
+    <!-- Parse Tree Tab -->
+    <div class="tab-content" id="tab-tree">
+      <div class="output-box" id="tree-area">
+        <p class="placeholder-text">Parse tree will appear here.</p>
       </div>
     </div>
 
@@ -541,8 +560,8 @@ youare pow = b ^ 2      <span style="color:#484f58;">@@ ^  power / exponentiatio
 
 <script>
   function switchTab(name) {
-    document.querySelectorAll('.tab').forEach((t, i) => {
-      t.classList.toggle('active', ['output','llm','help'][i] === name);
+    document.querySelectorAll('.tab').forEach((t, i) => { 
+      t.classList.toggle('active', ['output','tokens','tree','llm','help'][i] === name);
     });
     document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
     document.getElementById('tab-' + name).classList.add('active');
@@ -630,6 +649,11 @@ youare pow = b ^ 2      <span style="color:#484f58;">@@ ^  power / exponentiatio
     }
 
     document.getElementById('output-area').innerHTML = html;
+    
+   
+    document.getElementById('tokens-area').innerHTML = `<pre>${escHtml(data.tokens)}</pre>`;
+
+    document.getElementById('tree-area').innerHTML = `<pre>${escHtml(data.tree)}</pre>`;
   }
 
   function renderLLM(data) {
@@ -677,6 +701,45 @@ youare pow = b ^ 2      <span style="color:#484f58;">@@ ^  power / exponentiatio
 </html>
 """
 
+#Helper Functions JS
+def get_tokens(source):
+   # Reset lexer
+    lexer.lineno = 1
+    lexer.input(source)
+
+    tokens_list = []
+
+    while True:
+        tok = lexer.token()
+        if not tok:
+            break
+
+        tokens_list.append(
+            f"{tok.type:<12} → {tok.value}"
+        )
+
+    return "\n".join(tokens_list)
+
+
+def tree_to_string(node, indent=0):
+    space = "  " * indent
+    result = ""
+
+    if isinstance(node, tuple):
+        result += f"{space}{node[0]}\n"
+        for child in node[1:]:
+            result += tree_to_string(child, indent + 1)
+
+    elif isinstance(node, list):
+        for item in node:
+            result += tree_to_string(item, indent)
+
+    else:
+        result += f"{space}{node}\n"
+
+    return result
+
+
 # ============================================
 # Routes
 # ============================================
@@ -691,11 +754,13 @@ def run_code():
     source = data.get("code", "")
 
     result = {
-        "parse_ok"     : False,
-        "parse_error"  : "",
-        "semantic_ok"  : False,
-        "semantic_error": "",
-        "output"       : ""
+      "parse_ok"     : False,
+      "parse_error"  : "",
+      "semantic_ok"  : False,
+      "semantic_error": "",
+      "output"       : "",
+      "tokens": "",
+      "tree": ""
     }
 
     # Step 1 — Parse
@@ -705,6 +770,9 @@ def run_code():
             result["parse_error"] = "Parsing failed. Check your syntax."
             return jsonify(result)
         result["parse_ok"] = True
+        
+        result["tokens"] = get_tokens(source)
+        result["tree"] = tree_to_string(ast)
     except Exception as e:
         result["parse_error"] = str(e)
         return jsonify(result)
