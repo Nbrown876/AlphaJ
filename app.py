@@ -36,7 +36,7 @@ HTML = r"""
       font-family: 'Segoe UI', sans-serif;
       background: #0d1117;
       color: #c9d1d9;
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
@@ -279,6 +279,8 @@ HTML = r"""
       color: #484f58;
       display: flex;
       justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 4px;
     }
 
     /* ── Scrollbar ── */
@@ -300,6 +302,86 @@ HTML = r"""
       font-family: monospace;
       color: #93c5fd;
     }
+
+    /* -- MOBILE RESPONSIVE -- */
+    @media (max-width: 768px) {
+      header {
+        padding: 10px 16px;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .header-right { display: none; }
+
+      .logo-text h1 { font-size: 15px; }
+      .logo-text p  { font-size: 11px; }
+
+      .main {
+        flex-direction: column;
+        overflow: visible;
+        height: auto;
+      }
+
+      .editor-panel {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #30363d;
+      }
+
+      .output-panel { width: 100%; }
+
+      #editor {
+        min-height: 220px;
+        font-size: 13px;
+      }
+
+      .editor-footer {
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .btn {
+        padding: 7px 12px;
+        font-size: 12px;
+        flex: 1;
+        text-align: center;
+      }
+
+      .tab {
+        padding: 8px 10px;
+        font-size: 12px;
+        flex: 1;
+        text-align: center;
+      }
+
+      .tab-content { padding: 12px; }
+
+      .output-box {
+        font-size: 12px;
+        padding: 10px;
+      }
+
+      .step-title { font-size: 11px; }
+
+      footer {
+        font-size: 11px;
+        padding: 6px 16px;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .panel-header span:last-child { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      .logo-icon { width: 30px; height: 30px; font-size: 16px; }
+      .logo-text h1 { font-size: 14px; }
+      .logo-text p  { font-size: 10px; }
+      #editor { font-size: 12px; min-height: 180px; }
+      .btn { font-size: 11px; padding: 6px 10px; }
+    }
+
   </style>
 </head>
 <body>
@@ -769,4 +851,4 @@ def run_llm():
 # Entry Point
 # ============================================
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    app.run(debug=False, host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
