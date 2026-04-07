@@ -1,9 +1,8 @@
-# ============================================
 # Alpha J Language - Main Entry Point
 # Language: Alpha J
 # Course: CIT4004 - Analysis of Programming Languages
 # University of Technology, Jamaica
-# ============================================
+# Jonique Hosang Shaw, Neechelo Brown, Leigh-Ann Cammock, Damani Poyser
 
 import sys
 import os
@@ -17,9 +16,8 @@ from src.semantic import SemanticAnalyzer
 from src.interpreter import Interpreter
 from src.llm import LLMAnalyzer, print_llm_results
 
-# ============================================
+
 # UI Helpers
-# ============================================
 
 BANNER = r"""
   ___  _     _____  _   _    _              _
@@ -55,9 +53,7 @@ def print_error(msg: str):
 def print_info(msg: str):
     print(f"  ➤  {msg}")
 
-# ============================================
 # Core Pipeline Runner
-# ============================================
 def run_pipeline(source_code: str, use_llm: bool = True):
     """
     Runs the full Alpha J compiler pipeline:
@@ -67,8 +63,8 @@ def run_pipeline(source_code: str, use_llm: bool = True):
     4. LLM Analysis (optional)
     """
 
-    # ── Step 1: Parse ──────────────────────────────
-    print_section("STEP 1 — Lexing & Parsing")
+    #Step 1: Parse
+    print_section("STEP 1 - Lexing & Parsing")
     ast = parser.parse(source_code, lexer=lexer)
 
     if ast is None:
@@ -76,8 +72,8 @@ def run_pipeline(source_code: str, use_llm: bool = True):
         return
     print_success("Lexing & Parsing completed successfully.")
 
-    # ── Step 2: Semantic Analysis ───────────────────
-    print_section("STEP 2 — Semantic Analysis")
+    #Step 2: Semantic Analysis
+    print_section("STEP 2 - Semantic Analysis")
     analyzer = SemanticAnalyzer()
     passed = analyzer.analyze(ast)
 
@@ -86,15 +82,15 @@ def run_pipeline(source_code: str, use_llm: bool = True):
         return
     print_success("Semantic Analysis passed.")
 
-    # ── Step 3: Interpret ───────────────────────────
-    print_section("STEP 3 — Interpreter Output")
+    #Step 3: Interpret
+    print_section("STEP 3 - Interpreter Output")
     interpreter = Interpreter()
     interpreter.interpret(ast)
     actual_output = "\n".join(interpreter.output_log)
 
-    # ── Step 4: LLM Analysis ────────────────────────
+    #Step 4: LLM Analysis
     if use_llm:
-        print_section("STEP 4 — LLM Analysis")
+        print_section("STEP 4 - LLM Analysis")
         ask = input("  Run LLM analysis on this program? (y/n): ").strip().lower()
         if ask == 'y':
             llm = LLMAnalyzer()
@@ -108,9 +104,9 @@ def run_pipeline(source_code: str, use_llm: bool = True):
     print(DIVIDER)
 
 
-# ============================================
+
 # File Mode
-# ============================================
+
 def run_file(filepath: str):
     print_banner()
     print_info(f"File Mode — Loading: {filepath}")
@@ -130,12 +126,11 @@ def run_file(filepath: str):
     run_pipeline(source_code)
 
 
-# ============================================
+
 # Interactive Mode
-# ============================================
 def run_interactive():
     print_banner()
-    print_info("Interactive Mode — Type your Alpha J code below.")
+    print_info("Interactive Mode - Type your Alpha J code below.")
     print_info("Type 'run' on a new line to execute.")
     print_info("Type 'clear' to reset the editor.")
     print_info("Type 'exit' to quit.")
@@ -184,9 +179,7 @@ def run_interactive():
             lines.append(line)
 
 
-# ============================================
 # Entry Point
-# ============================================
 if __name__ == "__main__":
     if len(sys.argv) == 2:
         # File mode — python main.py program.alphaj

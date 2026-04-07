@@ -3,6 +3,7 @@
 # Language: Alpha J
 # Course: CIT4004 - Anaylsis of Programming Languages
 # University of Technology, Jamaica
+# Jonique Hosang Shaw, Neechelo Brown, Leigh-Ann Cammock, Damani Poyser
 
 import ply.yacc as yacc
 from src.lexer import tokens, lexer

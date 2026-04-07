@@ -1,9 +1,8 @@
-# ============================================
 # Alpha J Language - Web IDE
 # Language: Alpha J
 # Course: CIT4004 - Analysis of Programming Languages
 # University of Technology, Jamaica
-# ============================================
+# Jonique Hosang Shaw, Neechelo Brown, Leigh-Ann Cammock, Damani Poyser
 
 from flask import Flask, request, jsonify, render_template_string
 import sys, os, io, contextlib
@@ -19,16 +18,14 @@ import ply.lex as lex
 
 app = Flask(__name__)
 
-# ============================================
 # HTML Template (Inline)
-# ============================================
 HTML = r"""
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Alpha J — Online IDE</title>
+  <title>Alpha J - Online IDE</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -65,10 +62,10 @@ HTML = r"""
       font-weight: bold; font-size: 20px; color: #fff;
     }
 
-    .logo-text h1 { font-size: 20px; color: #f0f6fc; }
-    .logo-text p  { font-size: 15px; color: #8b949e; }
+    .logo-text h1 { font-size: 16px; color: #f0f6fc; }
+    .logo-text p  { font-size: 12px; color: #8b949e; }
 
-    .header-right { font-size: 20px; color: #8b949e; text-align: right; }
+    .header-right { font-size: 13px; color: #8b949e; text-align: right; }
 
     /* ── Main Layout ── */
     .main {
@@ -92,13 +89,13 @@ HTML = r"""
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font-size: 20px;
+      font-size: 13px;
       color: #8b949e;
     }
 
     .panel-title {
       display: flex; align-items: center; gap: 8px;
-      font-weight: 600; color: #f0f6fc; font-size: 15px;
+      font-weight: 600; color: #f0f6fc; font-size: 13px;
     }
 
     .dot { width: 8px; height: 8px; border-radius: 50%; }
@@ -114,7 +111,7 @@ HTML = r"""
       outline: none;
       padding: 16px;
       font-family: 'Courier New', monospace;
-      font-size: 20px;
+      font-size: 14px;
       line-height: 1.6;
       resize: none;
       tab-size: 4;
@@ -135,7 +132,7 @@ HTML = r"""
       padding: 8px 20px;
       border: none;
       border-radius: 6px;
-      font-size: 15px;
+      font-size: 13px;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.2s;
@@ -176,8 +173,8 @@ HTML = r"""
     }
 
     .tab {
-      padding: 10px 20px;
-      font-size: 20px;
+      padding: 8px 16px;
+      font-size: 13px;
       font-weight: 600;
       cursor: pointer;
       color: #8b949e;
@@ -211,14 +208,14 @@ HTML = r"""
       align-items: center;
       gap: 8px;
       margin-bottom: 10px;
-      font-size: 20px;
+      font-size: 13px;
       font-weight: 600;
     }
 
     .badge {
       padding: 3px 10px;
       border-radius: 20px;
-      font-size: 15px;
+      font-size: 12px;
       font-weight: 700;
     }
 
@@ -237,7 +234,7 @@ HTML = r"""
     .step-block.fail { border-left-color: #f85149; }
 
     .step-title {
-      font-size: 15px;
+      font-size: 12px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -391,8 +388,7 @@ HTML = r"""
   <div class="logo">
     <div class="logo-icon">αJ</div>
     <div class="logo-text">
-      <h1>Alpha J — Online IDE</h1>
-      <p>CIT4004 · University of Technology, Jamaica</p>
+      <h1>Alpha J - Online IDE</h1>
     </div>
   </div>
   <div class="header-right">
@@ -649,8 +645,8 @@ youare pow = b ^ 2      <span style="color:#484f58;">@@ ^  power / exponentiatio
     }
 
     document.getElementById('output-area').innerHTML = html;
-    
-   
+
+
     document.getElementById('tokens-area').innerHTML = `<pre>${escHtml(data.tokens)}</pre>`;
 
     document.getElementById('tree-area').innerHTML = `<pre>${escHtml(data.tree)}</pre>`;
@@ -701,9 +697,10 @@ youare pow = b ^ 2      <span style="color:#484f58;">@@ ^  power / exponentiatio
 </html>
 """
 
-#Helper Functions JS
+
+# Helper Functions JS
 def get_tokens(source):
-   # Reset lexer
+    # Reset lexer
     lexer.lineno = 1
     lexer.input(source)
 
@@ -739,7 +736,6 @@ def tree_to_string(node, indent=0):
 
     return result
 
-
 # ============================================
 # Routes
 # ============================================
@@ -754,13 +750,13 @@ def run_code():
     source = data.get("code", "")
 
     result = {
-      "parse_ok"     : False,
-      "parse_error"  : "",
-      "semantic_ok"  : False,
-      "semantic_error": "",
-      "output"       : "",
-      "tokens": "",
-      "tree": ""
+        "parse_ok": False,
+        "parse_error": "",
+        "semantic_ok": False,
+        "semantic_error": "",
+        "output": "",
+        "tokens": "",
+        "tree": ""
     }
 
     # Step 1 — Parse
@@ -770,7 +766,7 @@ def run_code():
             result["parse_error"] = "Parsing failed. Check your syntax."
             return jsonify(result)
         result["parse_ok"] = True
-        
+
         result["tokens"] = get_tokens(source)
         result["tree"] = tree_to_string(ast)
     except Exception as e:
@@ -782,7 +778,7 @@ def run_code():
         buf = io.StringIO()
         with contextlib.redirect_stdout(buf):
             analyzer = SemanticAnalyzer()
-            passed   = analyzer.analyze(ast)
+            passed = analyzer.analyze(ast)
 
         if not passed:
             result["semantic_error"] = buf.getvalue().strip()
@@ -805,12 +801,12 @@ def run_code():
 
 @app.route("/llm", methods=["POST"])
 def run_llm():
-    data   = request.get_json()
+    data = request.get_json()
     source = data.get("code", "")
 
     # First run interpreter to get actual output
     try:
-        ast    = parser.parse(source, lexer=lexer)
+        ast = parser.parse(source, lexer=lexer)
         interp = Interpreter()
         interp.interpret(ast)
         actual = "\n".join(interp.output_log)
@@ -820,35 +816,33 @@ def run_llm():
     # Run LLM
     try:
         from src.llm import LLMAnalyzer
-        llm     = LLMAnalyzer()
+        llm = LLMAnalyzer()
         results = llm.analyze(source, actual)
 
         # Build diff string
         diff = ""
         if not results["match"]:
             pred = results["predicted_lines"]
-            act  = results["actual_lines"]
+            act = results["actual_lines"]
             lines = []
             for i in range(max(len(pred), len(act))):
                 p = pred[i] if i < len(pred) else "<missing>"
-                a = act[i]  if i < len(act)  else "<missing>"
+                a = act[i] if i < len(act) else "<missing>"
                 if p != a:
-                    lines.append(f"Line {i+1}: Predicted: {p!r} | Actual: {a!r}")
+                    lines.append(f"Line {i + 1}: Predicted: {p!r} | Actual: {a!r}")
             diff = "\n".join(lines)
 
         return jsonify({
-            "explanation"     : results["explanation"],
+            "explanation": results["explanation"],
             "predicted_output": results["predicted_output"],
-            "actual_output"   : actual,
-            "match"           : results["match"],
-            "diff"            : diff
+            "actual_output": actual,
+            "match": results["match"],
+            "diff": diff
         })
     except Exception as e:
         return jsonify({"error": str(e)})
 
 
-# ============================================
 # Entry Point
-# ============================================
 if __name__ == "__main__":
     app.run(debug=False, host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))

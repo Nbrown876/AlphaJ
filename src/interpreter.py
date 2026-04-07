@@ -1,9 +1,8 @@
-# ============================================
 # Alpha J Language - Interpreter
 # Language: Alpha J
 # Course: CIT4004 - Analysis of Programming Languages
 # University of Technology, Jamaica
-# ============================================
+# Jonique Hosang Shaw, Neechelo Brown, Leigh-Ann Cammock, Damani Poyser
 
 # Exception class used to trap runtime interpreter errors (e.g., division by zero, undefined variables)
 class InterpreterError(Exception):
@@ -51,9 +50,8 @@ class Environment:
             
         raise InterpreterError(f"Interpreter Error: Undefined variable '{name}'.")
 
-# ============================================
+
 # AST Walker Engine
-# ============================================
 class Interpreter:
     def __init__(self):
         # Initialize the baseline global environment
@@ -107,10 +105,7 @@ class Interpreter:
             
             node_type = node[0]
 
-            # ---------------------------
             # Statement Handlers
-            # ---------------------------
-
             # Program Root Node
             if node_type == "program":
                 _, stmt_list = node
@@ -203,9 +198,7 @@ class Interpreter:
                    # self.environment = previous_env
                 return None
 
-            # ---------------------------
             # Expression/Binary Operation Logic
-            # ---------------------------
 
             # Relational Operators handling comparisons
             # Handled Operators: ==, !=, >, <, >=, <=
@@ -246,7 +239,6 @@ class Interpreter:
                     return l / r
                 if op == '^': return l ** r
 
-
             #String Node Handler
             elif node_type == "string":
                 s = node[1]
@@ -268,9 +260,7 @@ class Interpreter:
         # Hard system fault if an unexpected structural identifier attempts parsing
         raise InterpreterError(f"Interpreter Error: Unrecognized AST node {node}")
 
-# ==========================================
 # Development Environment Test Runtime
-# ==========================================
 if __name__ == "__main__":
     import sys, os
     
@@ -333,5 +323,4 @@ broadcast "Program execution successful!"
     
     # 3. Fire deterministic evaluation phase 
     interpreter.interpret(ast)
-    
     print("========================================")

@@ -1,19 +1,16 @@
-# ============================================
 # Alpha J Language - Semantic Analyzer
 # Language: Alpha J
 # Course: CIT4004 - Analysis of Programming Languages
+# Jonique Hosang Shaw, Neechelo Brown, Leigh-Ann Cammock, Damani Poyser
 # University of Technology, Jamaica
-# ============================================
 
 # What this does:
 # 1. Checks for undeclared variables
 # 2. Checks for redeclared variables
 # 3. Checks for division by zero
 
-
 from dataclasses import dataclass
 from typing import Dict, List, Optional
-
 
 class SemanticError(Exception):
     """Semantic Analysis Failure indicator."""
@@ -304,7 +301,7 @@ class SemanticAnalyzer:
         self.visit(right)
         return "number"
 
- #── Test Runner ──
+ #Test Runner
 if __name__ == "__main__":
     import sys, os
     # Add the project root to sys.path so we can import from src

@@ -3,6 +3,7 @@
 # Language: Alpha J
 # Course: CIT4004 - Anaylsis of Programming Languages
 # University of Technology, Jamaica
+# Jonique Hosang Shaw, Neechelo Brown, Leigh-Ann Cammock, Damani Poyser
 
 import ply.lex as lex
 
@@ -57,8 +58,8 @@ t_ASSIGNTO   = r'='
 t_LT_PARENT  = r'[(]'
 t_RT_PARENT  = r'[)]'
 
-#Our Complex Token Rules
 
+#Our Complex Token Rules
 def t_NOTES(t):
     r'@@[^\n]*'
     return t
@@ -82,7 +83,6 @@ def t_NEWLINE(t):
     t.lexer.lineno += len(t.value) #Tracks the number of lines
     return t
 
-
 #THis is used for Ignoring spaces and tabs
 t_ignore = ' \t'
 
@@ -92,7 +92,6 @@ def t_error(t):
 
 #Build the lexer
 lexer = lex.lex()
-
 
 #Quick Test
 if __name__ == "__main__":
