@@ -9,7 +9,7 @@ youare e = a ^ 2
 youare f = -a
 
 @@ Broadcast with multiple arguments
-broadcast "Values: " a b c d e f
+broadcast "Values: " a ", " b ", " c ", " d ", " e ", " f
 
 @@ All relational operators
 if a > b
